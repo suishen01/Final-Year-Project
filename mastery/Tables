@@ -1,0 +1,89 @@
+CREATE TABLE users(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE courses (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE enrollment (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+
+	user_id INT UNSIGNED NOT NULL,    
+    INDEX user_ind (user_id),
+	CONSTRAINT fk_user2 FOREIGN KEY (user_id)
+	REFERENCES users(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+	course_id INT UNSIGNED NOT NULL,
+    INDEX course_ind (course_id),
+	CONSTRAINT fk_course2 FOREIGN KEY (course_id)
+	REFERENCES courses(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE 
+);
+
+CREATE TABLE tests (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    course_id INT UNSIGNED NOT NULL,
+    INDEX par_ind (course_id),
+	CONSTRAINT fk_course FOREIGN KEY (course_id)
+	REFERENCES courses(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE 
+);
+
+CREATE TABLE questions (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR(50) NOT NULL,
+    tests_id INT UNSIGNED NOT NULL,
+    INDEX par_ind (tests_id),
+	CONSTRAINT fk_tests FOREIGN KEY (tests_id)
+	REFERENCES tests(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE 
+);
+
+CREATE TABLE marks (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	marks FLOAT NOT NULL,
+
+	user_id INT UNSIGNED NOT NULL,
+	INDEX user_ind (user_id),
+	CONSTRAINT fk_user FOREIGN KEY (user_id)
+	REFERENCES users(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+    test_id INT UNSIGNED NOT NULL,    
+    INDEX test_ind (test_id),
+	CONSTRAINT fk_tests2 FOREIGN KEY (test_id)
+	REFERENCES tests(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE 
+);
+
+CREATE TABLE prerequisites (
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	required_marks FLOAT NOT NULL,
+
+	pre_id INT UNSIGNED NOT NULL,    
+    INDEX pre_ind (pre_id),
+	CONSTRAINT fk_pre FOREIGN KEY (pre_id)
+	REFERENCES tests(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+	test_id INT UNSIGNED NOT NULL,
+    INDEX tests_ind (test_id),
+	CONSTRAINT fk_test3 FOREIGN KEY (test_id)
+	REFERENCES tests(id)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE 
+);

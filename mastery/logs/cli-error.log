@@ -1,0 +1,63 @@
+2017-06-15 03:39:51 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ml.users' doesn't exist in /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/Collection.php on line 131
+Stack Trace:
+#0 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'users', Array, Object(Cake\Database\Schema\TableSchema))
+#1 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('users', Array)
+#2 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/ORM/Table.php(531): Cake\Database\Schema\CachedCollection->describe('users')
+#3 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/ORM/Table.php(652): Cake\ORM\Table->getSchema()
+#4 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(217): Cake\ORM\Table->getPrimaryKey()
+#5 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'users', 'Users')
+#7 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Users')
+#8 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Users')
+#9 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('Users', 0)
+#10 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Cake\Collection\Collection->each(Object(Closure))
+#11 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/Shell.php(458): Bake\Shell\BakeShell->all('users')
+#12 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(230): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /home/a/Documents/masterylearning/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2017-06-15 03:45:15 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ml.quizz' doesn't exist in /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/Collection.php on line 131
+Stack Trace:
+#0 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'quizz', Array, Object(Cake\Database\Schema\TableSchema))
+#1 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('quizz', Array)
+#2 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/ORM/Table.php(531): Cake\Database\Schema\CachedCollection->describe('quizz')
+#3 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/ORM/Table.php(652): Cake\ORM\Table->getSchema()
+#4 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(217): Cake\ORM\Table->getPrimaryKey()
+#5 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'quizz', 'Quizz')
+#7 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Quizz')
+#8 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Quizz')
+#9 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('Quizz', 0)
+#10 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Cake\Collection\Collection->each(Object(Closure))
+#11 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/Shell.php(458): Bake\Shell\BakeShell->all('quizz')
+#12 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(230): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /home/a/Documents/masterylearning/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
+2017-06-15 03:51:52 Error: [Cake\Database\Exception] SQLSTATE[42S02]: Base table or view not found: 1146 Table 'ml.enrolment' doesn't exist in /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/Collection.php on line 131
+Stack Trace:
+#0 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(97): Cake\Database\Schema\Collection->_reflect('Column', 'enrolment', Array, Object(Cake\Database\Schema\TableSchema))
+#1 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(63): Cake\Database\Schema\Collection->describe('enrolment', Array)
+#2 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/ORM/Table.php(531): Cake\Database\Schema\CachedCollection->describe('enrolment')
+#3 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/ORM/Table.php(652): Cake\ORM\Table->getSchema()
+#4 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(217): Cake\ORM\Table->getPrimaryKey()
+#5 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(127): Bake\Shell\Task\ModelTask->getAssociations(Object(Cake\ORM\Table))
+#6 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(110): Bake\Shell\Task\ModelTask->getTableContext(Object(Cake\ORM\Table), 'enrolment', 'Enrolment')
+#7 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/Task/ModelTask.php(97): Bake\Shell\Task\ModelTask->bake('Enrolment')
+#8 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/BakeShell.php(257): Bake\Shell\Task\ModelTask->main('Enrolment')
+#9 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Collection/CollectionTrait.php(51): Bake\Shell\BakeShell->Bake\Shell\{closure}('Enrolment', 0)
+#10 /home/a/Documents/masterylearning/vendor/cakephp/bake/src/Shell/BakeShell.php(258): Cake\Collection\Collection->each(Object(Closure))
+#11 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/Shell.php(458): Bake\Shell\BakeShell->all('enrolment')
+#12 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(230): Cake\Console\Shell->runCommand(Array, true, Array)
+#13 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#14 /home/a/Documents/masterylearning/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#15 /home/a/Documents/masterylearning/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#16 {main}
+
+
