@@ -13,7 +13,23 @@ use Cake\Utility\Hash;
  */
 class TestsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+    }
 
+    public function isAuthorized($user)
+    {
+        if ((isset($user['role']) && $user['role'] === 'Teacher') || in_array($this->request->getParam('action'), ['view'])) {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
+    
     /**
      * Index method
      *
@@ -29,6 +45,7 @@ class TestsController extends AppController
         $this->set(compact('tests'));
         $this->set('_serialize', ['tests']);
     }
+
 
     /**
      * View method

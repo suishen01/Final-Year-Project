@@ -20,7 +20,7 @@
         <?php
             echo $this->Form->control('username');
             echo $this->Form->control('password');
-            echo $this->Form->control('role');
+            echo $this->Form->control('role', ['options' => ['Admin' => 'Admin', 'Teacher' => 'Teacher', 'Student' => 'Student']]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Courses Controller
@@ -12,6 +13,29 @@ use App\Controller\AppController;
  */
 class CoursesController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+    }
+
+    public function beforeFilter(Event $event)
+    {        
+        if ($this->Auth->user('role') == 'Admin') {
+            $this->viewBuilder()->template('admin_index');
+        }
+    }
+
+    public function isAuthorized($user)
+    {
+        if (in_array($this->request->getParam('action'), ['index', 'view'])) {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Index method
@@ -25,6 +49,8 @@ class CoursesController extends AppController
         $this->set(compact('courses'));
         $this->set('_serialize', ['courses']);
     }
+
+
 
     /**
      * View method

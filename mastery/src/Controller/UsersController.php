@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
+
 
 /**
  * Users Controller
@@ -12,6 +14,44 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['logout']);
+    }
+
+    public function isAuthorized($user)
+    {
+        if (in_array($this->request->getParam('action'), ['logout', 'login'])) {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid username or password, try again'));
+        }
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
 
     /**
      * Index method
@@ -35,6 +75,10 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+
         $user = $this->Users->get($id, [
             'contain' => ['Enrollment', 'Marks']
         ]);

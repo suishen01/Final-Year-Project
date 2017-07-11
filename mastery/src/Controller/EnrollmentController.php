@@ -12,7 +12,14 @@ use App\Controller\AppController;
  */
 class EnrollmentController extends AppController
 {
-
+    public function initialize()
+    {
+        parent::initialize();
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+    }
+    
     /**
      * Index method
      *
