@@ -57,29 +57,8 @@ class TestsController extends AppController
             'contain' => ['Courses', 'Prerequisites', 'Questions']
         ]);
 
-        if ($this->Auth->user()['role'] === 'Admin') {            
+        if ($this->Auth->user()['role'] === 'Student') {            
             $this->loadModel('Prerequisites');
-            /*$query = $this->Prerequisites->find()
-                ->select(['t.name', 'Prerequisites.required_marks'])
-                ->where(['Prerequisites.test_id =' => $id])
-                ->hydrate(false)
-                ->join([
-                    'table' => 'tests',
-                    'alias' => 't',
-                    'type' => 'LEFT',
-                    'conditions' => [
-                        't.id = Prerequisites.pre_id'
-                    ]
-                ])
-                ->join([
-                    'table' => 'questions',
-                    'alias' => 'q',
-                    'type' => 'LEFT',
-                    'conditions' => [
-                        'q.test_id = Prerequisites.pre_id'
-                    ]
-                ])
-                ->toArray();*/
             $query = $this->Prerequisites->find();
             $query
                 ->select(['Prerequisites.required_marks', 't.name', 'count' => $query->func()->count('q.id')])

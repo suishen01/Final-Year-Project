@@ -7,7 +7,7 @@ CREATE TABLE users(
 
 CREATE TABLE courses (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    published TINYINT(1) DEFAULT '0',
+	published TINYINT(1) DEFAULT '0',
     name VARCHAR(50) NOT NULL    
 );
 
@@ -45,7 +45,6 @@ CREATE TABLE questions (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     description VARCHAR(50) NOT NULL,
     answer VARCHAR(50) NOT NULL,
-
     test_id INT UNSIGNED NOT NULL,
     INDEX par_ind (test_id),
 	CONSTRAINT fk_tests FOREIGN KEY (test_id)
@@ -56,7 +55,7 @@ CREATE TABLE questions (
 
 CREATE TABLE marks (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	correct TINYINT(1) NOT NULL,
+	marks FLOAT NOT NULL,
 
 	user_id INT UNSIGNED NOT NULL,
 	INDEX user_ind (user_id),
@@ -65,10 +64,10 @@ CREATE TABLE marks (
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 
-    question_id INT UNSIGNED NOT NULL,    
-    INDEX question_ind (question_id),
-	CONSTRAINT fk_questions FOREIGN KEY (question_id)
-	REFERENCES questions(id)
+    test_id INT UNSIGNED NOT NULL,    
+    INDEX test_ind (test_id),
+	CONSTRAINT fk_tests2 FOREIGN KEY (test_id)
+	REFERENCES tests(id)
 	ON DELETE CASCADE
 	ON UPDATE CASCADE 
 );
