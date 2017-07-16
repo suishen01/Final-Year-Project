@@ -48,6 +48,9 @@ class TestsTable extends Table
         $this->hasMany('Prerequisites', [
             'foreignKey' => 'test_id'
         ]);
+        $this->hasMany('Questions', [
+            'foreignKey' => 'test_id'
+        ]);
     }
 
     /**
@@ -61,6 +64,10 @@ class TestsTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
+
+        $validator
+            ->boolean('published')
+            ->allowEmpty('published');
 
         $validator
             ->requirePresence('name', 'create')

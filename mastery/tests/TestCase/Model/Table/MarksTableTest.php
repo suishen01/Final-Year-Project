@@ -29,7 +29,8 @@ class MarksTableTest extends TestCase
         'app.enrollment',
         'app.courses',
         'app.tests',
-        'app.prerequisites'
+        'app.prerequisites',
+        'app.questions'
     ];
 
     /**

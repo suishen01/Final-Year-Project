@@ -10,8 +10,8 @@
         <li><?= $this->Html->link(__('New Mark'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Tests'), ['controller' => 'Tests', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="marks index large-9 medium-8 columns content">
@@ -20,9 +20,9 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('marks') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('correct') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('test_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('question_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -30,9 +30,9 @@
             <?php foreach ($marks as $mark): ?>
             <tr>
                 <td><?= $this->Number->format($mark->id) ?></td>
-                <td><?= $this->Number->format($mark->marks) ?></td>
+                <td><?= h($mark->correct) ?></td>
                 <td><?= $mark->has('user') ? $this->Html->link($mark->user->id, ['controller' => 'Users', 'action' => 'view', $mark->user->id]) : '' ?></td>
-                <td><?= $mark->has('test') ? $this->Html->link($mark->test->name, ['controller' => 'Tests', 'action' => 'view', $mark->test->id]) : '' ?></td>
+                <td><?= $mark->has('question') ? $this->Html->link($mark->question->id, ['controller' => 'Questions', 'action' => 'view', $mark->question->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $mark->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $mark->id]) ?>

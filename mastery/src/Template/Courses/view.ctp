@@ -14,7 +14,7 @@
         <li><?= $this->Html->link(__('List Enrollment'), ['controller' => 'Enrollment', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Enrollment'), ['controller' => 'Enrollment', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Tests'), ['controller' => 'Tests', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?> </li>        
     </ul>
 </nav>
 <div class="courses view large-9 medium-8 columns content">
@@ -24,9 +24,14 @@
             <th scope="row"><?= __('Name') ?></th>
             <td><?= h($course->name) ?></td>
         </tr>
+
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($course->id) ?></td>
+        </tr>        
+        <tr>
+            <th scope="row"><?= __('Published') ?></th>
+            <td><?= $course->published ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
     <div class="related">
@@ -60,6 +65,7 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Published') ?></th>
                 <th scope="col"><?= __('Name') ?></th>
                 <th scope="col"><?= __('Course Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -67,6 +73,7 @@
             <?php foreach ($course->tests as $tests): ?>
             <tr>
                 <td><?= h($tests->id) ?></td>
+                <td><?= $tests->published ? __('Yes') : __('No'); ?></td>
                 <td><?= h($tests->name) ?></td>
                 <td><?= h($tests->course_id) ?></td>
                 <td class="actions">

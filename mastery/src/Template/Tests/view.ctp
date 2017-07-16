@@ -17,6 +17,8 @@
         <li><?= $this->Html->link(__('New Mark'), ['controller' => 'Marks', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Prerequisites'), ['controller' => 'Prerequisites', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Prerequisite'), ['controller' => 'Prerequisites', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Questions'), ['controller' => 'Questions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="tests view large-9 medium-8 columns content">
@@ -34,34 +36,11 @@
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($test->id) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Published') ?></th>
+            <td><?= $test->published ? __('Yes') : __('No'); ?></td>
+        </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Related Marks') ?></h4>
-        <?php if (!empty($test->marks)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Marks') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('Test Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($test->marks as $marks): ?>
-            <tr>
-                <td><?= h($marks->id) ?></td>
-                <td><?= h($marks->marks) ?></td>
-                <td><?= h($marks->user_id) ?></td>
-                <td><?= h($marks->test_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Marks', 'action' => 'view', $marks->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Marks', 'action' => 'edit', $marks->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Marks', 'action' => 'delete', $marks->id], ['confirm' => __('Are you sure you want to delete # {0}?', $marks->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
     <div class="related">
         <h4><?= __('Related Prerequisites') ?></h4>
         <?php if (!empty($test->prerequisites)): ?>
@@ -83,6 +62,27 @@
                     <?= $this->Html->link(__('View'), ['controller' => 'Prerequisites', 'action' => 'view', $prerequisites->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Prerequisites', 'action' => 'edit', $prerequisites->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Prerequisites', 'action' => 'delete', $prerequisites->id], ['confirm' => __('Are you sure you want to delete # {0}?', $prerequisites->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Questions') ?></h4>
+        <?php if (!empty($test->questions)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($test->questions as $questions): ?>
+            <tr>
+                <td><?= h($questions->id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Questions', 'action' => 'view', $questions->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Questions', 'action' => 'edit', $questions->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Questions', 'action' => 'delete', $questions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $questions->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

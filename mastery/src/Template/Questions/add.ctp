@@ -17,7 +17,8 @@
         <legend><?= __('Add Question') ?></legend>
         <?php
             echo $this->Form->control('description');
-            echo $this->Form->control('tests_id', ['options' => $tests]);
+            echo $this->Form->control('answer');
+            echo $this->Form->control('test_id', ['options' => $tests]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * Marks Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\TestsTable|\Cake\ORM\Association\BelongsTo $Tests
+ * @property \App\Model\Table\QuestionsTable|\Cake\ORM\Association\BelongsTo $Questions
  *
  * @method \App\Model\Entity\Mark get($primaryKey, $options = [])
  * @method \App\Model\Entity\Mark newEntity($data = null, array $options = [])
@@ -41,8 +41,8 @@ class MarksTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Tests', [
-            'foreignKey' => 'test_id',
+        $this->belongsTo('Questions', [
+            'foreignKey' => 'question_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -60,9 +60,9 @@ class MarksTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->numeric('marks')
-            ->requirePresence('marks', 'create')
-            ->notEmpty('marks');
+            ->boolean('correct')
+            ->requirePresence('correct', 'create')
+            ->notEmpty('correct');
 
         return $validator;
     }
@@ -77,7 +77,7 @@ class MarksTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['test_id'], 'Tests'));
+        $rules->add($rules->existsIn(['question_id'], 'Questions'));
 
         return $rules;
     }

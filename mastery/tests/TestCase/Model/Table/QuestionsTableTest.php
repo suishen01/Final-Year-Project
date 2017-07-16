@@ -28,6 +28,7 @@ class QuestionsTableTest extends TestCase
         'app.tests',
         'app.courses',
         'app.enrollment',
+        'app.users',
         'app.marks',
         'app.prerequisites'
     ];

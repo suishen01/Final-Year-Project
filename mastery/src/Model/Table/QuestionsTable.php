@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Questions Model
  *
  * @property \App\Model\Table\TestsTable|\Cake\ORM\Association\BelongsTo $Tests
+ * @property |\Cake\ORM\Association\HasMany $Marks
  *
  * @method \App\Model\Entity\Question get($primaryKey, $options = [])
  * @method \App\Model\Entity\Question newEntity($data = null, array $options = [])
@@ -37,8 +38,11 @@ class QuestionsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Tests', [
-            'foreignKey' => 'tests_id',
+            'foreignKey' => 'test_id',
             'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Marks', [
+            'foreignKey' => 'question_id'
         ]);
     }
 
@@ -58,6 +62,10 @@ class QuestionsTable extends Table
             ->requirePresence('description', 'create')
             ->notEmpty('description');
 
+        $validator
+            ->requirePresence('answer', 'create')
+            ->notEmpty('answer');
+
         return $validator;
     }
 
@@ -70,7 +78,7 @@ class QuestionsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['tests_id'], 'Tests'));
+        $rules->add($rules->existsIn(['test_id'], 'Tests'));
 
         return $rules;
     }

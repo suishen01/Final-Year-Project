@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use Cake\Utility\Hash;
 
 /**
  * Tests Controller
@@ -29,7 +28,6 @@ class TestsController extends AppController
 
         return parent::isAuthorized($user);
     }
-    
     /**
      * Index method
      *
@@ -46,7 +44,6 @@ class TestsController extends AppController
         $this->set('_serialize', ['tests']);
     }
 
-
     /**
      * View method
      *
@@ -57,47 +54,113 @@ class TestsController extends AppController
     public function view($id = null)
     {
         $test = $this->Tests->get($id, [
-            'contain' => ['Courses', 'Marks', 'Prerequisites']
+            'contain' => ['Courses', 'Prerequisites', 'Questions']
         ]);
 
-        $this->loadModel('Prerequisites');
-        $query = $this->Prerequisites->find()
-            ->select(['t.name', 'Prerequisites.required_marks'])
-            ->where(['m.marks < Prerequisites.required_marks'])
-            ->orWhere(function ($exp, $q) {
-                return $exp->isNull('m.marks');
-            })
-            ->where(['Prerequisites.test_id =' => $id])
-            ->hydrate(false)
-            ->join([
-                'table' => 'marks',
-                'alias' => 'm',
-                'type' => 'LEFT',
-                'conditions' => [
-                    'm.test_id = Prerequisites.pre_id',
-                    'm.user_id =' => 1
-                ]
-            ])
-            ->join([
-                'table' => 'tests',
-                'alias' => 't',
-                'type' => 'LEFT',
-                'conditions' => [
-                    't.id = Prerequisites.pre_id'
-                ]
-            ])
-            ->toArray();
+        if ($this->Auth->user()['role'] === 'Admin') {            
+            $this->loadModel('Prerequisites');
+            /*$query = $this->Prerequisites->find()
+                ->select(['t.name', 'Prerequisites.required_marks'])
+                ->where(['Prerequisites.test_id =' => $id])
+                ->hydrate(false)
+                ->join([
+                    'table' => 'tests',
+                    'alias' => 't',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        't.id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'questions',
+                    'alias' => 'q',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'q.test_id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->toArray();*/
+            $query = $this->Prerequisites->find();
+            $query
+                ->select(['Prerequisites.required_marks', 't.name', 'count' => $query->func()->count('q.id')])
+                ->where(['Prerequisites.test_id =' => $id])
+                ->hydrate(false)
+                ->join([
+                    'table' => 'tests',
+                    'alias' => 't',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        't.id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'questions',
+                    'alias' => 'q',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'q.test_id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->group('Prerequisites.pre_id')
+                ->group('Prerequisites.required_marks');
 
-        foreach ($query as $prereq) {
-            $this->Flash->error(__('To attempt this test you must attain a mark of '.($prereq['required_marks']).'% in '.$prereq['t']['name']));
-        }
+            $query2 = $this->Prerequisites->find();
+            $query2
+                ->select(['t.name', 'count' => $query2->func()->count('q.id')])
+                ->where(['Prerequisites.test_id =' => $id])
+                ->where(['q.id = m.question_id'])
+                ->hydrate(false)
+                ->join([
+                    'table' => 'tests',
+                    'alias' => 't',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        't.id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'questions',
+                    'alias' => 'q',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'q.test_id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'marks',
+                    'alias' => 'm',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'm.question_id = q.id'
+                    ]
+                ])
+                ->group('Prerequisites.pre_id')
+                ->group('Prerequisites.required_marks');
 
-        if (sizeof($query) == 0) {
-            $this->set('test', $test);
-            $this->set('_serialize', ['test']);
-        } else {            
-            return $this->redirect(['controller' => 'Courses', 'action' => 'view', $test->course_id]);
+            $passAll = True;
+            foreach($query as $prereq) {
+                $pass = False;
+                foreach ($query2 as $prereq2) {
+                    if($prereq['t']['name'] == $prereq2['t']['name']) {
+                         $pass = True;
+                        if($prereq2['count']/$prereq['count']*100 < $prereq['required_marks']) {
+                            $passAll = False;
+                            $this->Flash->error(__('To attempt this test you must attain a mark of '.($prereq['required_marks']).'% in '.$prereq['t']['name']));
+                        }
+                    }
+                }
+                if($pass == False) {
+                    $passAll = False;
+                    $this->Flash->error(__('To attempt this test you must attain a mark of '.($prereq['required_marks']).'% in '.$prereq['t']['name']));
+                }
+            }
+
+            if ($passAll == False) {
+                return $this->redirect(['controller' => 'Courses', 'action' => 'view', $test->course_id]);            
+            }            
         }
+        $this->set('test', $test);
+        $this->set('_serialize', ['test']);
     }
 
     /**

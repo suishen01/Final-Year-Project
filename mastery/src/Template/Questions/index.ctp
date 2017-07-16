@@ -19,7 +19,8 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('description') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('tests_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('answer') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('test_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
             <tr>
                 <td><?= $this->Number->format($question->id) ?></td>
                 <td><?= h($question->description) ?></td>
+                <td><?= h($question->answer) ?></td>
                 <td><?= $question->has('test') ? $this->Html->link($question->test->name, ['controller' => 'Tests', 'action' => 'view', $question->test->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $question->id]) ?>

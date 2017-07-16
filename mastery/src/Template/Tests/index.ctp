@@ -14,6 +14,8 @@
         <li><?= $this->Html->link(__('New Mark'), ['controller' => 'Marks', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Prerequisites'), ['controller' => 'Prerequisites', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Prerequisite'), ['controller' => 'Prerequisites', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Questions'), ['controller' => 'Questions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="tests index large-9 medium-8 columns content">
@@ -22,6 +24,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('published') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('course_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -31,6 +34,7 @@
             <?php foreach ($tests as $test): ?>
             <tr>
                 <td><?= $this->Number->format($test->id) ?></td>
+                <td><?= h($test->published) ?></td>
                 <td><?= h($test->name) ?></td>
                 <td><?= $test->has('course') ? $this->Html->link($test->course->name, ['controller' => 'Courses', 'action' => 'view', $test->course->id]) : '' ?></td>
                 <td class="actions">

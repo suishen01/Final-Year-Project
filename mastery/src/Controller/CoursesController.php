@@ -21,13 +21,6 @@ class CoursesController extends AppController
         }
     }
 
-    public function beforeFilter(Event $event)
-    {        
-        if ($this->Auth->user('role') == 'Admin') {
-            $this->viewBuilder()->template('admin_index');
-        }
-    }
-
     public function isAuthorized($user)
     {
         if (in_array($this->request->getParam('action'), ['index', 'view'])) {

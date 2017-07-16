@@ -7,6 +7,7 @@ use Cake\ORM\Entity;
  * Test Entity
  *
  * @property int $id
+ * @property bool $published
  * @property string $name
  * @property int $course_id
  *

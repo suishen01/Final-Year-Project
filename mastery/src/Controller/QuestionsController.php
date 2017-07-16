@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Questions Controller
@@ -12,6 +13,22 @@ use App\Controller\AppController;
  */
 class QuestionsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+    }
+
+    public function isAuthorized($user)
+    {
+        if ((isset($user['role']) && $user['role'] === 'Teacher') || in_array($this->request->getParam('action'), ['view'])) {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
 
     /**
      * Index method
@@ -44,6 +61,28 @@ class QuestionsController extends AppController
 
         $this->set('question', $question);
         $this->set('_serialize', ['question']);
+
+        if ($this->request->is('post')) {
+            $answer = $this->Questions->get($id);
+            if ($answer['answer'] == $this->request->getData()['answer']) {
+                $this->Flash->success(__('Correct.'));
+                $marksTable = TableRegistry::get('Marks');
+                $mark = $marksTable->newEntity();
+
+                $mark->correct = 1;
+                $mark->user_id = $this->Auth->user()['id'];
+                $mark->question_id = $id;
+
+                $marksTable->save($mark);
+                return $this->redirect(['controller' => 'Tests','action' => 'view', $question['test_id']]);
+
+            } else {
+                $this->Flash->error(__('Incorrect. Please, try again.'));
+            }
+           
+        }
+
+        
     }
 
     /**
@@ -113,4 +152,15 @@ class QuestionsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+     public function check($answer)
+    {
+        $question = $this->Questions->get($id);
+        if ($question['answer'] == $answer) {
+            $this->Flash->success(__('Correct.'));
+        } else {
+            $this->Flash->error(__('Incorrect. Please, try again.'));
+        }
+    }
 }
+

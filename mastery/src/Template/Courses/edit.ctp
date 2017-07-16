@@ -24,6 +24,7 @@
     <fieldset>
         <legend><?= __('Edit Course') ?></legend>
         <?php
+            echo $this->Form->control('published');
             echo $this->Form->control('name');
         ?>
     </fieldset>

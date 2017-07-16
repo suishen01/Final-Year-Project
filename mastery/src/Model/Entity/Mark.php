@@ -7,12 +7,12 @@ use Cake\ORM\Entity;
  * Mark Entity
  *
  * @property int $id
- * @property float $marks
+ * @property bool $correct
  * @property int $user_id
- * @property int $test_id
+ * @property int $question_id
  *
  * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Test $test
+ * @property \App\Model\Entity\Question $question
  */
 class Mark extends Entity
 {

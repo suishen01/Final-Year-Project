@@ -20,6 +20,7 @@ class QuestionsControllerTest extends IntegrationTestCase
         'app.tests',
         'app.courses',
         'app.enrollment',
+        'app.users',
         'app.marks',
         'app.prerequisites'
     ];

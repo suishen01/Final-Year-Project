@@ -26,6 +26,7 @@
     <fieldset>
         <legend><?= __('Edit Test') ?></legend>
         <?php
+            echo $this->Form->control('published');
             echo $this->Form->control('name');
             echo $this->Form->control('course_id', ['options' => $courses]);
         ?>

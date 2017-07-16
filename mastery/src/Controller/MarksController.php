@@ -12,23 +12,7 @@ use App\Controller\AppController;
  */
 class MarksController extends AppController
 {
-    public function initialize()
-    {
-        parent::initialize();
-        if (!$this->isAuthorized($this->Auth->user())) {
-            throw new UnauthorizedException();
-        }
-    }
 
-    public function isAuthorized($user)
-    {
-        if ((isset($user['role']) && $user['role'] === 'Teacher') || in_array($this->request->getParam('action'), ['view'])) {
-            return true;
-        }
-
-        return parent::isAuthorized($user);
-    }
-    
     /**
      * Index method
      *
@@ -37,14 +21,13 @@ class MarksController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Tests']
+            'contain' => ['Users', 'Questions']
         ];
         $marks = $this->paginate($this->Marks);
 
         $this->set(compact('marks'));
         $this->set('_serialize', ['marks']);
     }
-
 
     /**
      * View method
@@ -56,7 +39,7 @@ class MarksController extends AppController
     public function view($id = null)
     {
         $mark = $this->Marks->get($id, [
-            'contain' => ['Users', 'Tests']
+            'contain' => ['Users', 'Questions']
         ]);
 
         $this->set('mark', $mark);
@@ -81,8 +64,8 @@ class MarksController extends AppController
             $this->Flash->error(__('The mark could not be saved. Please, try again.'));
         }
         $users = $this->Marks->Users->find('list', ['limit' => 200]);
-        $tests = $this->Marks->Tests->find('list', ['limit' => 200]);
-        $this->set(compact('mark', 'users', 'tests'));
+        $questions = $this->Marks->Questions->find('list', ['limit' => 200]);
+        $this->set(compact('mark', 'users', 'questions'));
         $this->set('_serialize', ['mark']);
     }
 
@@ -108,8 +91,8 @@ class MarksController extends AppController
             $this->Flash->error(__('The mark could not be saved. Please, try again.'));
         }
         $users = $this->Marks->Users->find('list', ['limit' => 200]);
-        $tests = $this->Marks->Tests->find('list', ['limit' => 200]);
-        $this->set(compact('mark', 'users', 'tests'));
+        $questions = $this->Marks->Questions->find('list', ['limit' => 200]);
+        $this->set(compact('mark', 'users', 'questions'));
         $this->set('_serialize', ['mark']);
     }
 

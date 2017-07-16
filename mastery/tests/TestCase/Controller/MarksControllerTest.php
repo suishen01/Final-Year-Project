@@ -21,7 +21,8 @@ class MarksControllerTest extends IntegrationTestCase
         'app.enrollment',
         'app.courses',
         'app.tests',
-        'app.prerequisites'
+        'app.prerequisites',
+        'app.questions'
     ];
 
     /**

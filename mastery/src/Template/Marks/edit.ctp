@@ -15,8 +15,8 @@
         <li><?= $this->Html->link(__('List Marks'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Tests'), ['controller' => 'Tests', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="marks form large-9 medium-8 columns content">
@@ -24,9 +24,9 @@
     <fieldset>
         <legend><?= __('Edit Mark') ?></legend>
         <?php
-            echo $this->Form->control('marks');
+            echo $this->Form->control('correct');
             echo $this->Form->control('user_id', ['options' => $users]);
-            echo $this->Form->control('test_id', ['options' => $tests]);
+            echo $this->Form->control('question_id', ['options' => $questions]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

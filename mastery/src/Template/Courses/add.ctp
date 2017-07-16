@@ -18,6 +18,7 @@
     <fieldset>
         <legend><?= __('Add Course') ?></legend>
         <?php
+            echo $this->Form->control('published');
             echo $this->Form->control('name');
         ?>
     </fieldset>
