@@ -20,7 +20,6 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('correct') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('question_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -30,7 +29,6 @@
             <?php foreach ($marks as $mark): ?>
             <tr>
                 <td><?= $this->Number->format($mark->id) ?></td>
-                <td><?= h($mark->correct) ?></td>
                 <td><?= $mark->has('user') ? $this->Html->link($mark->user->id, ['controller' => 'Users', 'action' => 'view', $mark->user->id]) : '' ?></td>
                 <td><?= $mark->has('question') ? $this->Html->link($mark->question->id, ['controller' => 'Questions', 'action' => 'view', $mark->question->id]) : '' ?></td>
                 <td class="actions">

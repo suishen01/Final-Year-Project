@@ -18,7 +18,6 @@
     <fieldset>
         <legend><?= __('Add Mark') ?></legend>
         <?php
-            echo $this->Form->control('correct');
             echo $this->Form->control('user_id', ['options' => $users]);
             echo $this->Form->control('question_id', ['options' => $questions]);
         ?>

@@ -29,7 +29,89 @@ class QuestionsController extends AppController
 
         return parent::isAuthorized($user);
     }
+    public function passedPrerequisites($id)
+    {
+        if ($this->Auth->user()['role'] === 'Student') {            
+            $this->loadModel('Prerequisites');
+            $query = $this->Prerequisites->find();
+            $query
+                ->select(['Prerequisites.required_marks', 't.name', 'count' => $query->func()->count('q.id')])
+                ->where(['Prerequisites.test_id =' => $id])
+                ->hydrate(false)
+                ->join([
+                    'table' => 'tests',
+                    'alias' => 't',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        't.id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'questions',
+                    'alias' => 'q',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'q.test_id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->group('Prerequisites.pre_id')
+                ->group('Prerequisites.required_marks');
 
+            $query2 = $this->Prerequisites->find();
+            $query2
+                ->select(['t.name', 'count' => $query2->func()->count('q.id')])
+                ->where(['Prerequisites.test_id =' => $id])
+                ->where(['q.id = m.question_id'])
+                ->where(['m.user_id =' => $this->Auth->user()['id']])
+                ->hydrate(false)
+                ->join([
+                    'table' => 'tests',
+                    'alias' => 't',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        't.id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'questions',
+                    'alias' => 'q',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'q.test_id = Prerequisites.pre_id'
+                    ]
+                ])
+                ->join([
+                    'table' => 'marks',
+                    'alias' => 'm',
+                    'type' => 'LEFT',
+                    'conditions' => [
+                        'm.question_id = q.id'
+                    ]
+                ])
+                ->group('Prerequisites.pre_id')
+                ->group('Prerequisites.required_marks');
+
+            $passAll = True;
+            foreach($query as $prereq) {
+                $pass = False;
+                foreach ($query2 as $prereq2) {
+                    if($prereq['t']['name'] == $prereq2['t']['name']) {
+                        $pass = True;
+                        if($prereq2['count']/$prereq['count']*100 < $prereq['required_marks']) {
+                            $passAll = False;
+                        }
+                    }
+                }
+                if($pass == False) {
+                    $passAll = False;
+                }
+            }
+
+            if ($passAll == False) {
+                throw new UnauthorizedException();            
+            }            
+        }
+    }
     /**
      * Index method
      *
@@ -58,6 +140,8 @@ class QuestionsController extends AppController
         $question = $this->Questions->get($id, [
             'contain' => ['Tests']
         ]);
+
+        $this->passedPrerequisites($question->test_id);
 
         $this->set('question', $question);
         $this->set('_serialize', ['question']);

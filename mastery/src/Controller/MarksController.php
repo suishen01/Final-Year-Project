@@ -12,22 +12,7 @@ use App\Controller\AppController;
  */
 class MarksController extends AppController
 {
-    public function initialize()
-    {
-        parent::initialize();
-        if (!$this->isAuthorized($this->Auth->user())) {
-            throw new UnauthorizedException();
-        }
-    }
 
-    public function isAuthorized($user)
-    {
-        if (isset($user['role']) && $user['role'] === 'Teacher') {
-            return true;
-        }
-
-        return parent::isAuthorized($user);
-    }
     /**
      * Index method
      *

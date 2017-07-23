@@ -59,11 +59,6 @@ class MarksTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->boolean('correct')
-            ->requirePresence('correct', 'create')
-            ->notEmpty('correct');
-
         return $validator;
     }
 
@@ -78,6 +73,7 @@ class MarksTable extends Table
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['question_id'], 'Questions'));
+        $rules->add($rules->isUnique(['user_id', 'question_id'], 'This user has already solved this question.'));
 
         return $rules;
     }

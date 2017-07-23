@@ -7,7 +7,6 @@ use Cake\ORM\Entity;
  * Mark Entity
  *
  * @property int $id
- * @property bool $correct
  * @property int $user_id
  * @property int $question_id
  *

@@ -32,9 +32,5 @@
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($mark->id) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Correct') ?></th>
-            <td><?= $mark->correct ? __('Yes') : __('No'); ?></td>
-        </tr>
     </table>
 </div>

@@ -28,35 +28,9 @@ class TestsController extends AppController
 
         return parent::isAuthorized($user);
     }
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function index()
+
+    public function passedPrerequisites($id, $test)
     {
-        $this->paginate = [
-            'contain' => ['Courses']
-        ];
-        $tests = $this->paginate($this->Tests);
-
-        $this->set(compact('tests'));
-        $this->set('_serialize', ['tests']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Test id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $test = $this->Tests->get($id, [
-            'contain' => ['Courses', 'Prerequisites', 'Questions']
-        ]);
-
         if ($this->Auth->user()['role'] === 'Student') {            
             $this->loadModel('Prerequisites');
             $query = $this->Prerequisites->find();
@@ -88,6 +62,7 @@ class TestsController extends AppController
                 ->select(['t.name', 'count' => $query2->func()->count('q.id')])
                 ->where(['Prerequisites.test_id =' => $id])
                 ->where(['q.id = m.question_id'])
+                ->where(['m.user_id =' => $this->Auth->user()['id']])
                 ->hydrate(false)
                 ->join([
                     'table' => 'tests',
@@ -121,7 +96,7 @@ class TestsController extends AppController
                 $pass = False;
                 foreach ($query2 as $prereq2) {
                     if($prereq['t']['name'] == $prereq2['t']['name']) {
-                         $pass = True;
+                        $pass = True;
                         if($prereq2['count']/$prereq['count']*100 < $prereq['required_marks']) {
                             $passAll = False;
                             $this->Flash->error(__('To attempt this test you must attain a mark of '.($prereq['required_marks']).'% in '.$prereq['t']['name']));
@@ -138,6 +113,37 @@ class TestsController extends AppController
                 return $this->redirect(['controller' => 'Courses', 'action' => 'view', $test->course_id]);            
             }            
         }
+    }
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function index()
+    {
+        $this->paginate = [
+            'contain' => ['Courses']
+        ];
+        $tests = $this->paginate($this->Tests);
+
+        $this->set(compact('tests'));
+        $this->set('_serialize', ['tests']);
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Test id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $test = $this->Tests->get($id, [
+            'contain' => ['Courses', 'Prerequisites', 'Questions']
+        ]);
+        $this->passedPrerequisites($id, $test);
+
         $this->set('test', $test);
         $this->set('_serialize', ['test']);
     }
