@@ -27,16 +27,6 @@
 				<div data-split-pane-component>
 					<div class="pretty-split-pane-component-inner" id="top"><p>
 <h3>Mastery Learning</h3>
-<button onClick="window.location.href=('task1.html')">Task1</button>
-<button onClick="window.location.href=('task2.html')">Task2</button>
-<button onClick="window.location.href=('task3.html')">Task3</button>
-<button onClick="window.location.href=('task4.html')">Task4</button>
-<button onClick="window.location.href=('task5.html')">Task5</button>
-<button onClick="window.location.href=('task6.html')">Task6</button>
-<button onClick="window.location.href=('task7.html')">Task7</button>
-<button onClick="window.location.href=('task8.html')">Task8</button>
-<button onClick="window.location.href=('task9.html')">Task9</button>
-<button onClick="window.location.href=('task10.html')">Task10</button>
 </p></div>
 				</div>
 				<div data-split-pane-divider data-height="5px"></div>
@@ -44,8 +34,8 @@
 					<div data-split-pane>
 						<div data-split-pane-component data-width="30%">
 							<div class="pretty-split-pane-component-inner" id="left"><p>
-<h4>Task2</h4>
-
+<h4>Task1</h4>
+<h5 name="task_id" id="task_id">1</h5>
  <?php
 $servername = "localhost";
 $username = "root";
@@ -66,6 +56,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "" . $row["question"]. "<br>";
+	$answer = $row["answer"];
     }
 } else {
     echo "0 results";
@@ -109,10 +100,11 @@ Console:
 
 	function post(){
 		var source = document.getElementById("source").value;
+		var answer = "<?php echo $answer ?>"; 
 		$.post('testphp.php',{source:source},	
 		function(data){
 			$('#result').html(data);
-			if (data == "Hello World 123") {
+			if (data == answer) {
 				alert("Well Done!");
 			} else {
 				alert("Try Again!");			
