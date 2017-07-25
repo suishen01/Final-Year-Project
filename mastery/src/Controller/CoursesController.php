@@ -25,13 +25,13 @@ class CoursesController extends AppController
     {
         if (in_array($this->request->getParam('action'), ['index'])) {
             return true;
-        } else {
+        } else if ($this->Auth->user()['role'] != 'Admin' && in_array($this->request->getParam('action'), ['view'])){
             $this->loadModel('Enrollment');
             $query = $this->Enrollment->find()
                 ->select(['Enrollment.id'])
                 ->where(['Enrollment.user_id =' => $this->Auth->user()['id']])
                 ->where(['Enrollment.course_id =' => $this->request->getParam('pass')['0']]);
-            $enrolled = $query->toArray();   
+            $enrolled = $query->toArray();
             if (!empty($enrolled)) {
                 return true;
             }

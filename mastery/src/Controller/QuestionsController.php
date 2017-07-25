@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Http\Client;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -31,7 +32,7 @@ class QuestionsController extends AppController
     }
     public function passedPrerequisites($id)
     {
-        if ($this->Auth->user()['role'] === 'Student') {            
+        if ($this->Auth->user()['role'] === 'Student') {
             $this->loadModel('Prerequisites');
             $query = $this->Prerequisites->find();
             $query
@@ -108,8 +109,8 @@ class QuestionsController extends AppController
             }
 
             if ($passAll == False) {
-                throw new UnauthorizedException();            
-            }            
+                throw new UnauthorizedException();
+            }
         }
     }
     /**
@@ -146,27 +147,29 @@ class QuestionsController extends AppController
         $this->set('question', $question);
         $this->set('_serialize', ['question']);
 
+
+        // Set the language and filename to be used for compilation
+        $language = "java";
+        $filename = "main.java";
+
+
+
+
+
+
+
         if ($this->request->is('post')) {
-            $answer = $this->Questions->get($id);
-            if ($answer['answer'] == $this->request->getData()['answer']) {
-                $this->Flash->success(__('Correct.'));
-                $marksTable = TableRegistry::get('Marks');
-                $mark = $marksTable->newEntity();
 
-                $mark->correct = 1;
-                $mark->user_id = $this->Auth->user()['id'];
-                $mark->question_id = $id;
+          $source = $this->request->getData()['answer'];
 
-                $marksTable->save($mark);
-                return $this->redirect(['controller' => 'Tests','action' => 'view', $question['test_id']]);
+          $result = $this->remoteExecuteSource($source, $language, $filename);
+          $result = $this->FormSuccessfulResults($result);
 
-            } else {
-                $this->Flash->error(__('Incorrect. Please, try again.'));
-            }
-           
+          debug($result);
+
         }
 
-        
+
     }
 
     /**
@@ -237,14 +240,100 @@ class QuestionsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-     public function check($answer)
-    {
-        $question = $this->Questions->get($id);
-        if ($question['answer'] == $answer) {
-            $this->Flash->success(__('Correct.'));
-        } else {
-            $this->Flash->error(__('Incorrect. Please, try again.'));
-        }
-    }
-}
 
+
+    // This function is responsible for communicating with the compilation engine.  The response is packaged up into an
+    // associative array with the following keys:
+    //	   result - this is either COMPILE_ERROR, RUNTIME_ERROR or SUCCESS
+    //	   stdout - this is standard output, which is relevant if result is SUCCESS
+    //	   error_message - this is the compiler error message if result if COMPILE_ERROR
+    //	   stderr - this is standard error if result is RUNTIME_ERROR
+    public function remoteExecuteSource($source, $language, $filename) {
+
+    	// This is a hard-coded IP address of the compilation engine service.  Yes, I know.
+    	$SERVER_HOST = "localhost";
+
+    	// Set URL
+    	$url = "http://".$SERVER_HOST."/jobe/index.php/restapi/runs";
+
+    	// Prepare the run_spec for submission
+    	$source = "public class main {  public static void main(String[] args) {start();}public static int start(){".$source."}}";
+    	$run_spec = array("run_spec" => array("sourcecode" => $source, "language_id" => $language, "sourcefilename" => $filename));
+    	$run_spec_json = json_encode($run_spec);
+
+      $http = new Client();
+      $result = $http->post($url, $run_spec_json, ['type' => 'json']);
+
+    	$evaluatedResult = "";
+
+    	// Successful evaluation with response included
+    	if ($result->code == 200) {
+    		$evaluatedResult = $this->ProcessReturnResult($result->json);
+    	}
+    	// The job has not been evaluated, but is in a queue - attempt to get the status, otherwise give up
+    	/*else if ($result->code == 202) {
+    		$run_id = $result;
+    		$result->json = $this->JobeGetRunStatusOfQueuedJob($run_id);
+    		if ($run_result == false) {
+    			return array("result" => "RUNTIME_ERROR", "error_message" => "", "stdout" => "", "stderr" => "The compilation engine is really busy right now - please try again later!");
+    		} else {
+    			$evaluatedResult = $this->ProcessReturnResult($result->json);
+    		}
+    	}*/
+    	return $evaluatedResult;
+    }
+
+    // We have a run_id for a previous submission to the compilation engine which was queued.  We will attempt to view the status of this
+    function JobeGetRunStatusOfQueuedJob($run_id)
+    {
+    	// Not implemented in current version of compilation engine
+    	return false;
+    }
+
+    // Code has been evaluated and the result should be interpreted.
+    // $result stores an associate array with the fields: run_id, outcome, cmpinfo, stdout, stderr
+    function ProcessReturnResult($executionResult)
+    {
+    	$result = "";
+    	$error_message = "";
+    	$stdout = "";
+    	$stderr = "";
+
+    	if ($executionResult['outcome'] == 15) {
+    		$result = "SUCCESS";
+    		$stdout = $executionResult['stdout'];
+    	} else if ($executionResult['outcome'] == 11) {
+    		$result = "COMPILE_ERROR";
+    		$error_message = $executionResult['cmpinfo'];
+    	} else if ($executionResult['outcome'] == 12) {
+    		$result = "RUNTIME_ERROR";
+    		$stderr = $executionResult['stderr'];
+    	} else if ($executionResult['outcome'] == 13) {
+    		$result = "RUNTIME_ERROR";
+    		$stderr = "Your submission took too long to execute.";
+    	} else if ($executionResult['outcome'] == 17) {
+    		$result = "RUNTIME_ERROR";
+    		$stderr = $executionResult['stderr'];
+    	} else if ($executionResult['outcome'] == 19) {
+    		$result = "RUNTIME_ERROR";
+    		$stderr = $executionResult['stderr'];
+    	} else {
+    		$result = "RUNTIME_ERROR";
+    		$stderr = "Unfortunately the compilation engine is not working properly at the moment. Please contact an administrator.";
+    	}
+    	return array("result" => $result, "error_message" => $error_message, "stdout" => $stdout, "stderr" => $stderr);
+    }
+
+    public function FormSuccessfulResults($result)
+    {
+    	if ($result['result']=="SUCCESS") {
+    		return $result['stdout'];
+    	} else {
+    		if ($result['stderr']==""){
+    			return $result['error_message'];
+    		}
+    		return $result['stderr'];
+    	}
+    }
+
+}

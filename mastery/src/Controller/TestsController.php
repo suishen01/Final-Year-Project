@@ -22,7 +22,7 @@ class TestsController extends AppController
 
     public function isAuthorized($user)
     {
-        if ((isset($user['role']) && $user['role'] === 'Teacher') || in_array($this->request->getParam('action'), ['view'])) {
+        if (($this->Auth->user()['role'] === 'Teacher') || in_array($this->request->getParam('action'), ['view'])) {
             return true;
         }
 
@@ -31,7 +31,7 @@ class TestsController extends AppController
 
     public function passedPrerequisites($id, $test)
     {
-        if ($this->Auth->user()['role'] === 'Student') {            
+        if ($this->Auth->user()['role'] === 'Student') {
             $this->loadModel('Prerequisites');
             $query = $this->Prerequisites->find();
             $query
@@ -110,8 +110,8 @@ class TestsController extends AppController
             }
 
             if ($passAll == False) {
-                return $this->redirect(['controller' => 'Courses', 'action' => 'view', $test->course_id]);            
-            }            
+                return $this->redirect(['controller' => 'Courses', 'action' => 'view', $test->course_id]);
+            }
         }
     }
     /**
@@ -162,7 +162,7 @@ class TestsController extends AppController
             if ($this->Tests->save($test)) {
                 $this->Flash->success(__('The test has been saved.'));
                 return $this->redirect(['action' => 'index']);
-            } 
+            }
             $this->Flash->error(__('The test could not be saved. Please, try again.'));
         }
 
