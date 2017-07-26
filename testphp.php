@@ -7,7 +7,10 @@ $filename = "main.java";
 
 // If code has been submitted, contact the compilation engine
 $source = $_POST['source'];
-$result = remoteExecuteSource($source, $language, $filename);
+$field1 = $_POST['field1'];
+$field2 = $_POST['field2'];
+
+$result = remoteExecuteSource($source,  $field1, $field2, $language, $filename);
 $result = FormSuccessfulResults($result);
 print_r($result);
 
@@ -17,7 +20,7 @@ print_r($result);
 //	   stdout - this is standard output, which is relevant if result is SUCCESS
 //	   error_message - this is the compiler error message if result if COMPILE_ERROR
 //	   stderr - this is standard error if result is RUNTIME_ERROR
-function remoteExecuteSource($source, $language, $filename) {
+function remoteExecuteSource($source, $field1, $field2, $language, $filename) {
 
 	// This is a hard-coded IP address of the compilation engine service.  Yes, I know.
 	$SERVER_HOST = "localhost";
@@ -29,7 +32,7 @@ function remoteExecuteSource($source, $language, $filename) {
 	$ch = curl_init();
 
 	// Prepare the run_spec for submission
-	$source = "public class main { ".$source."}";
+	$source = $field1."".$source."".$field2;
 	$run_spec = array("run_spec" => array("sourcecode" => $source, "language_id" => $language, "sourcefilename" => $filename));
 	$run_spec_json = json_encode($run_spec);
 

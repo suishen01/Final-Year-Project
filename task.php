@@ -18,7 +18,6 @@
 				margin: 0;
 				padding: 0;
 			}
-
 		</style>
 	</head>
 	<body data-ng-app="example">
@@ -41,22 +40,22 @@ $servername = "localhost";
 $username = "root";
 $password = "wzx4373176";
 $dbname = "ml";
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 $sql = "SELECT * FROM tasks";
 $result = $conn->query($sql);
-
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "" . $row["question"]. "<br>";
-	$answer = $row["answer"];
+echo "aaa".$row["expectedOutput"]."aaa<br>";
+	$expectedOutput = $row["expectedOutput"];
+	$field1 = $row["field1"];
+	$field2 = $row["field2"];
     }
 } else {
     echo "0 results";
@@ -97,21 +96,21 @@ Console:
 			angular.module('example', ['shagstrom.angular-split-pane']);
 		</script>
 <script type="text/javascript">
-
 	function post(){
 		var source = document.getElementById("source").value;
-		var answer = "<?php echo $answer ?>"; 
-		$.post('testphp.php',{source:source},	
+		var expectedOutput = "<?php echo $expectedOutput ?>"; 
+		var field1 = "<?php echo $field1 ?>";
+		var field2 = "<?php echo $field2 ?>";
+		$.post('testphp.php',{source:source, field1:field1, field2:field2},	
 		function(data){
 			$('#result').html(data);
-			if (data == answer) {
+			if (data == expectedOutput) {
 				alert("Well Done!");
 			} else {
-				alert("Try Again!");			
+				alert("Wrong Answer");			
 			}
 		});	
 	}
-
 //	window.onload = function(){
 //		if (window.name) {
 //			var sourceEl = document.getElementById('source');
