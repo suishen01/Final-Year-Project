@@ -9,9 +9,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $description
  * @property string $answer
+ * @property string $field1
+ * @property string $field2
  * @property int $test_id
  *
  * @property \App\Model\Entity\Test $test
+ * @property \App\Model\Entity\Mark[] $marks
  */
 class Question extends Entity
 {

@@ -29,7 +29,6 @@
             <tr>
                 <td><?= $this->Number->format($question->id) ?></td>
                 <td><?= h($question->description) ?></td>
-                <td><?= h($question->answer) ?></td>
                 <td><?= $question->has('test') ? $this->Html->link($question->test->name, ['controller' => 'Tests', 'action' => 'view', $question->test->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $question->id]) ?>

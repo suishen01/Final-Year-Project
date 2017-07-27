@@ -10,7 +10,7 @@
     <fieldset>
         <legend><?= h($question->description) ?></legend>
         <?php
-            echo $this->Form->control('answer');
+            echo $this->Form->control('answer', ['type' => 'textarea']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

@@ -8,13 +8,13 @@ CREATE TABLE users(
 CREATE TABLE courses (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     published TINYINT(1) DEFAULT '0',
-    name VARCHAR(50) NOT NULL    
+    name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE enrollment (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 
-	user_id INT UNSIGNED NOT NULL,    
+	user_id INT UNSIGNED NOT NULL,
     INDEX user_ind (user_id),
 	CONSTRAINT fk_user2 FOREIGN KEY (user_id)
 	REFERENCES users(id)
@@ -26,7 +26,7 @@ CREATE TABLE enrollment (
 	CONSTRAINT fk_course2 FOREIGN KEY (course_id)
 	REFERENCES courses(id)
 	ON DELETE CASCADE
-	ON UPDATE CASCADE 
+	ON UPDATE CASCADE
 );
 
 CREATE TABLE tests (
@@ -38,19 +38,21 @@ CREATE TABLE tests (
 	CONSTRAINT fk_course FOREIGN KEY (course_id)
 	REFERENCES courses(id)
 	ON DELETE CASCADE
-	ON UPDATE CASCADE 
+	ON UPDATE CASCADE
 );
 
 CREATE TABLE questions (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(50) NOT NULL,
-    answer VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    answer TEXT NOT NULL,
+    field1 TEXT NOT NULL,
+    field2 TEXT NOT NULL,
     test_id INT UNSIGNED NOT NULL,
     INDEX par_ind (test_id),
 	CONSTRAINT fk_tests FOREIGN KEY (test_id)
 	REFERENCES tests(id)
 	ON DELETE CASCADE
-	ON UPDATE CASCADE 
+	ON UPDATE CASCADE
 );
 
 CREATE TABLE marks (
@@ -63,19 +65,19 @@ CREATE TABLE marks (
 	ON DELETE CASCADE
 	ON UPDATE CASCADE,
 
-    question_id INT UNSIGNED NOT NULL,    
+    question_id INT UNSIGNED NOT NULL,
     INDEX question_ind (question_id),
 	CONSTRAINT fk_question FOREIGN KEY (question_id)
 	REFERENCES questions(id)
 	ON DELETE CASCADE
-	ON UPDATE CASCADE 
+	ON UPDATE CASCADE
 );
 
 CREATE TABLE prerequisites (
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	required_marks FLOAT NOT NULL,
 
-	pre_id INT UNSIGNED NOT NULL,    
+	pre_id INT UNSIGNED NOT NULL,
     INDEX pre_ind (pre_id),
 	CONSTRAINT fk_pre FOREIGN KEY (pre_id)
 	REFERENCES tests(id)
@@ -87,5 +89,5 @@ CREATE TABLE prerequisites (
 	CONSTRAINT fk_test3 FOREIGN KEY (test_id)
 	REFERENCES tests(id)
 	ON DELETE CASCADE
-	ON UPDATE CASCADE 
+	ON UPDATE CASCADE
 );

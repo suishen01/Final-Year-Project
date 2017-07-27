@@ -21,11 +21,16 @@
     <?= $this->Form->create($question) ?>
     <fieldset>
         <legend><?= __('Edit Question') ?></legend>
-        <?php
-            echo $this->Form->control('description');
-            echo $this->Form->control('answer');
-            echo $this->Form->control('test_id', ['options' => $tests]);
-        ?>
+        <?php echo $this->Form->control('description');?>
+            <div>
+            <fieldset>
+                <legend><?= __('Code') ?></legend>
+                <?php echo $this->Form->control('field1');?>
+                <h4>Student's Answer Here</h4>
+                <?php echo $this->Form->control('field2');?>
+            </fieldset>
+            </div>
+        <?php echo $this->Form->control('test_id', ['options' => $tests]);?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

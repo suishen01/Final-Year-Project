@@ -82,6 +82,6 @@ $(document).ready(function() {
                 .fadeOut('fast', function() {
                     $(this).remove();
                 });
-        });       
+        });
 });
 </script>

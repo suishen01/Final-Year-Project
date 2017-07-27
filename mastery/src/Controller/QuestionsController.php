@@ -162,10 +162,11 @@ class QuestionsController extends AppController
 
           $source = $this->request->getData()['answer'];
 
-          $result = $this->remoteExecuteSource($source, $language, $filename);
+          $result = $this->remoteExecuteSource($source, $question->field1, $question->field2, $language, $filename);
           $result = $this->FormSuccessfulResults($result);
-
-          debug($result);
+          if ($result = $question->answer) {
+            $this->Flash->success("Pass");
+          }
 
         }
 
@@ -248,16 +249,15 @@ class QuestionsController extends AppController
     //	   stdout - this is standard output, which is relevant if result is SUCCESS
     //	   error_message - this is the compiler error message if result if COMPILE_ERROR
     //	   stderr - this is standard error if result is RUNTIME_ERROR
-    public function remoteExecuteSource($source, $language, $filename) {
+    public function remoteExecuteSource($source, $field1, $field2, $language, $filename) {
 
     	// This is a hard-coded IP address of the compilation engine service.  Yes, I know.
     	$SERVER_HOST = "localhost";
 
     	// Set URL
     	$url = "http://".$SERVER_HOST."/jobe/index.php/restapi/runs";
-
     	// Prepare the run_spec for submission
-    	$source = "public class main {  public static void main(String[] args) {start();}public static int start(){".$source."}}";
+    	$source = $field1."".$source."".$field2;
     	$run_spec = array("run_spec" => array("sourcecode" => $source, "language_id" => $language, "sourcefilename" => $filename));
     	$run_spec_json = json_encode($run_spec);
 
