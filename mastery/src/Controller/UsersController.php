@@ -24,12 +24,12 @@ class UsersController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['logout']);
+        $this->Auth->allow(['logout','add']);
     }
 
     public function isAuthorized($user)
     {
-        if (in_array($this->request->getParam('action'), ['logout', 'login'])) {
+        if (in_array($this->request->getParam('action'), ['logout', 'login','add'])) {
             return true;
         }
 

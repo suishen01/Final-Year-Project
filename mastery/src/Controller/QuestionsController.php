@@ -152,25 +152,22 @@ class QuestionsController extends AppController
         $language = "java";
         $filename = "main.java";
 
-
-
-
-
-
-
         if ($this->request->is('post')) {
 
           $source = $this->request->getData()['answer'];
-
           $result = $this->remoteExecuteSource($source, $question->field1, $question->field2, $language, $filename);
-          $result = $this->FormSuccessfulResults($result);
-          if ($result = $question->answer) {
-            $this->Flash->success("Pass");
+          $output = $this->FormSuccessfulResults($result);
+
+          if ($result['result'] == 'SUCCESS') {
+            if ($output == $question->answer) {
+              $this->Flash->success("Pass");
+            } else {
+              $this->Flash->error('Tests failed');
+            }
+          } else {
+            $this->Flash->error('Error: '.$output);
           }
-
         }
-
-
     }
 
     /**

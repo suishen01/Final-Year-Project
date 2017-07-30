@@ -9,11 +9,6 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Test'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Course'), ['controller' => 'Courses', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Marks'), ['controller' => 'Marks', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Mark'), ['controller' => 'Marks', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Prerequisites'), ['controller' => 'Prerequisites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Prerequisite'), ['controller' => 'Prerequisites', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Questions'), ['controller' => 'Questions', 'action' => 'add']) ?> </li>
     </ul>

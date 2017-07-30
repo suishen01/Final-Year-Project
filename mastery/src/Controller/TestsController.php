@@ -153,22 +153,25 @@ class TestsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $this->loadModel('Prerequisites');
+        $this->loadModel('Courses');
+        $course = $this->Courses->get($id);
         $test = $this->Tests->newEntity();
         if ($this->request->is('post')) {
             $test = $this->Tests->patchEntity($test, $this->request->getData());
+            $test->course_id = $id;
             if ($this->Tests->save($test)) {
                 $this->Flash->success(__('The test has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The test could not be saved. Please, try again.'));
         }
+        
+        $tests = $this->Tests->find('list', ['conditions' => ['Tests.course_id =' => $id],'limit' => 200]);
 
-        $tests = $this->Tests->find('list', ['limit' => 200]);
-        $courses = $this->Tests->Courses->find('list', ['limit' => 200]);
-        $this->set(compact('test', 'courses', 'tests'));
+        $this->set(compact('test', 'tests'));
         $this->set('_serialize', ['test']);
     }
 
