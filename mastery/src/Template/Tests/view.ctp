@@ -9,7 +9,7 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Test'), ['action' => 'edit', $test->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Test'), ['action' => 'delete', $test->id], ['confirm' => __('Are you sure you want to delete # {0}?', $test->id)]) ?> </li>
-        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add', $test->id]) ?> </li>
     </ul>
 </nav>
 <div class="tests view large-9 medium-8 columns content">

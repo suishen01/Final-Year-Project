@@ -58,6 +58,10 @@ class CoursesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
+            ->boolean('published')
+            ->allowEmpty('published');
+
+        $validator
             ->requirePresence('name', 'create')
             ->notEmpty('name');
 

@@ -158,8 +158,8 @@ class QuestionsController extends AppController
           $result = $this->remoteExecuteSource($source, $question->field1, $question->field2, $language, $filename);
           $output = $this->FormSuccessfulResults($result);
 
-          if ($result['result'] == 'SUCCESS') {
-            if ($output == $question->answer) {
+          if ($result['result'] === 'SUCCESS') {
+            if (strcmp($output, $question->answer)) {
               $this->Flash->success("Pass");
             } else {
               $this->Flash->error('Tests failed');
@@ -175,11 +175,14 @@ class QuestionsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
+        $this->loadModel('Tests');
+        $test = $this->Tests->get($id);
         $question = $this->Questions->newEntity();
         if ($this->request->is('post')) {
             $question = $this->Questions->patchEntity($question, $this->request->getData());
+            $question->test_id = $id;
             if ($this->Questions->save($question)) {
                 $this->Flash->success(__('The question has been saved.'));
 

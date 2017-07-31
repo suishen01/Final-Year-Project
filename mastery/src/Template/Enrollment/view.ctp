@@ -10,11 +10,6 @@
         <li><?= $this->Html->link(__('Edit Enrollment'), ['action' => 'edit', $enrollment->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Enrollment'), ['action' => 'delete', $enrollment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enrollment->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Enrollment'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Enrollment'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Course'), ['controller' => 'Courses', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="enrollment view large-9 medium-8 columns content">

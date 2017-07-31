@@ -7,6 +7,7 @@ use Cake\ORM\Entity;
  * Course Entity
  *
  * @property int $id
+ * @property bool $published
  * @property string $name
  *
  * @property \App\Model\Entity\Enrollment[] $enrollment

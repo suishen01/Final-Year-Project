@@ -10,11 +10,7 @@
         <li><?= $this->Html->link(__('Edit Course'), ['action' => 'edit', $course->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Course'), ['action' => 'delete', $course->id], ['confirm' => __('Are you sure you want to delete # {0}?', $course->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Courses'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Course'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Enrollment'), ['controller' => 'Enrollment', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Enrollment'), ['controller' => 'Enrollment', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Tests'), ['controller' => 'Tests', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?> </li>        
+        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add', $course->id]) ?> </li>
     </ul>
 </nav>
 <div class="courses view large-9 medium-8 columns content">
@@ -28,10 +24,6 @@
         <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($course->id) ?></td>
-        </tr>        
-        <tr>
-            <th scope="row"><?= __('Published') ?></th>
-            <td><?= $course->published ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
     <div class="related">

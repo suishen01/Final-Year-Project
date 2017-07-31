@@ -22,12 +22,12 @@
             <div>
             <fieldset>
                 <legend><?= __('Code') ?></legend>
-                <?php echo $this->Form->control('field1');?>
-                <h4>Student's Answer Here</h4>
-                <?php echo $this->Form->control('field2');?>
+                <?php echo $this->Form->control('field1', ['label' => false]);?>
+                <p> <font color="blue">***Student's Answer Here***</font></br></p>
+                <?php echo $this->Form->control('field2', ['label' => false]);?>
             </fieldset>
             </div>
-        <?php echo $this->Form->control('test_id', ['options' => $tests]);?>
+        <?php echo $this->Form->control('answer', ['label' => 'Expected Output']);?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

@@ -9,8 +9,6 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Test'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Courses'), ['controller' => 'Courses', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Questions'), ['controller' => 'Questions', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="tests index large-9 medium-8 columns content">

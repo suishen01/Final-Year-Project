@@ -17,7 +17,6 @@
             </fieldset>
             </div>
         <?php echo $this->Form->control('answer', ['label' => 'Expected Output']);?>
-        <?php echo $this->Form->control('test_id', ['options' => $tests]);?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

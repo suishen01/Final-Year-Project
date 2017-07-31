@@ -12648,3 +12648,840 @@ Stack Trace:
 2017-07-29 04:18:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
 2017-07-29 04:18:45 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
 2017-07-29 04:19:37 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:23 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:23 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:25 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:25 Error: [PDOException] SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost'
+Request URL: /users/login
+Referer URL: http://localhost:8765/users/login
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Driver/PDODriverTrait.php(47): PDO->__construct('mysql:host=loca...', 'root', '', Array)
+#1 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Driver/Mysql.php(104): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Schema/BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Dialect/MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Schema/Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Schema/CachedCollection.php(42): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Database/Connection.php(367): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/ORM/Table.php(530): Cake\Database\Connection->getSchemaCollection()
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/ORM/Query.php(210): Cake\ORM\Table->getSchema()
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/ORM/Query.php(167): Cake\ORM\Query->addDefaultTypes(Object(App\Model\Table\UsersTable))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/ORM/Table.php(1569): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(App\Model\Table\UsersTable))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/ORM/Table.php(1171): Cake\ORM\Table->query()
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Auth/BaseAuthenticate.php(159): Cake\ORM\Table->find('all', Array)
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Auth/BaseAuthenticate.php(107): Cake\Auth\BaseAuthenticate->_query('admin')
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Auth/FormAuthenticate.php(78): Cake\Auth\BaseAuthenticate->_findUser('admin', 'admin')
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Component/AuthComponent.php(820): Cake\Auth\FormAuthenticate->authenticate(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/src/Controller/UsersController.php(41): Cake\Controller\Component\AuthComponent->identify()
+#17 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(440): App\Controller\UsersController->login()
+#18 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(119): Cake\Controller\Controller->invokeAction()
+#19 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(93): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\UsersController))
+#20 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#21 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#22 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#23 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#24 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#25 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#26 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#27 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#28 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#29 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#30 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#31 {main}
+
+
+2017-07-31 01:09:43 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:44 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:45 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:48 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:54 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:09:56 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:00 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:00 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:04 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:05 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:07 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:10 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:10 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:12 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:38 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:45 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:45 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:10:47 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:14:47 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:14:52 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:16:49 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:16:54 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:16:57 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:17:35 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:17:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:17:37 Error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "courses" with primary key [NULL]
+Request URL: /tests/add
+Referer URL: http://localhost:8765/courses/view/3
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(160): Cake\ORM\Table->get(Array)
+#1 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(440): App\Controller\TestsController->add()
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(119): Cake\Controller\Controller->invokeAction()
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(93): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\TestsController))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 01:17:42 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:17:47 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:17:47 Error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "courses" with primary key [NULL]
+Request URL: /tests/add
+Referer URL: http://localhost:8765/courses/view/3
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(160): Cake\ORM\Table->get(Array)
+#1 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(440): App\Controller\TestsController->add()
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(119): Cake\Controller\Controller->invokeAction()
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(93): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\TestsController))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 01:18:13 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:18:15 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:18:17 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:18:19 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:18:54 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:18:54 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:19:15 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:19:19 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:19:21 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 01:19:21 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:25 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:25 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php on line 21
+Request URL: /questions/add
+Referer URL: http://localhost:8765/tests
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\QuestionsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 02:40:27 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:27 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests
+Referer URL: http://localhost:8765/tests/add/3
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 02:40:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:29 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Tests' could not be found.
+Exception Attributes: array (
+  'class' => 'Tests\'',
+  'plugin' => false,
+  'prefix' => false,
+  '_ext' => false,
+)
+Request URL: /tests%27
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(70): Cake\Http\ControllerFactory->missingController(Object(Cake\Http\ServerRequest))
+#1 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#13 {main}
+
+
+2017-07-31 02:40:31 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:31 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 02:40:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:38 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:39 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:40:41 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:41:00 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:41:02 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:41:04 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:41:07 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:51:55 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:51:55 Error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "tests" with primary key [NULL]
+Request URL: /questions/add
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php(181): Cake\ORM\Table->get(Array)
+#1 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(440): App\Controller\QuestionsController->add()
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(119): Cake\Controller\Controller->invokeAction()
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(93): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\QuestionsController))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 02:51:59 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 02:51:59 Error: [Cake\Datasource\Exception\RecordNotFoundException] Record not found in table "tests"
+Request URL: /questions/add/1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/ORM/Table.php(1432): Cake\ORM\Query->firstOrFail()
+#1 /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php(181): Cake\ORM\Table->get(Array)
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(440): App\Controller\QuestionsController->add('1')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(119): Cake\Controller\Controller->invokeAction()
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(93): Cake\Http\ActionDispatcher->_invoke(Object(App\Controller\QuestionsController))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2017-07-31 02:52:02 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:11 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:11 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php on line 21
+Request URL: /questions/add/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\QuestionsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:01:23 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:23 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php on line 21
+Request URL: /questions/
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\QuestionsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:01:31 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:31 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/UsersController.php on line 21
+Request URL: /users/
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\UsersController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Users')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Users')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:01:34 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:34 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:47 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:53 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:01:55 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:10:06 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:10:06 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:10:08 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:10:39 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:11:00 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:12:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:12:56 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:13:04 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:13:04 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:13:07 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:13:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:14:08 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:14:42 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:14:42 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:14:44 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:14:46 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:14:59 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:15:05 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:15:05 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:15:07 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:15:09 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:15:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:15:35 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:00 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:00 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:02 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:04 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:13 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:32 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:32 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:34 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:16:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:17:22 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:17:46 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:17:46 Error: [ParseError] syntax error, unexpected 'if' (T_IF) in /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php on line 162
+Request URL: /questions/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/josh/Fina...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Core/App.php(152): class_exists('App\\Controller\\...')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Core/App.php(64): Cake\Core\App::_classExistsInBase('\\Controller\\Que...', 'App')
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(68): Cake\Core\App::className('Questions', 'Controller', 'Controller')
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#18 {main}
+
+
+2017-07-31 04:17:52 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:17:52 Error: [ParseError] syntax error, unexpected 'if' (T_IF) in /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php on line 162
+Request URL: /questions/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/josh/Fina...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Core/App.php(152): class_exists('App\\Controller\\...')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Core/App.php(64): Cake\Core\App::_classExistsInBase('\\Controller\\Que...', 'App')
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(68): Cake\Core\App::className('Questions', 'Controller', 'Controller')
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#18 {main}
+
+
+2017-07-31 04:17:57 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:18:27 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:18:59 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:19:04 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:09 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:22 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:26 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:45 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:56 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:57 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:20:58 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:21:01 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:21:22 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:21:32 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:21:32 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:21:34 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:21:39 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:22 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:25 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:34 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:43 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:43 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:45 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:23:53 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:26:19 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:46:20 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:46:20 Error: [Error] Call to a member function get() on boolean in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 25
+Request URL: /tests
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(18): App\Controller\TestsController->isAuthorized(Array)
+#1 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#2 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#16 {main}
+
+
+2017-07-31 04:46:50 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:46:50 Error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "tests" with primary key [NULL]
+Request URL: /tests
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(25): Cake\ORM\Table->get(Array)
+#1 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(18): App\Controller\TestsController->isAuthorized(Array)
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#3 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#17 {main}
+
+
+2017-07-31 04:47:18 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:47:24 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:47:38 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:05 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:05 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:48:19 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:28 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:39 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:40 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:43 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:43 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/CoursesController.php on line 20
+Request URL: /courses/view/3
+Referer URL: http://localhost:8765/courses
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\CoursesController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Courses')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Courses')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:48:47 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:56 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:58 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:48:58 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:05 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:07 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:13 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:13 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:21 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:31 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:35 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:49:35 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/view/2
+Referer URL: http://localhost:8765/courses/view/3
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:50:07 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:50:07 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:50:09 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:50:09 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:50:29 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:50:29 Error: [ParseError] syntax error, unexpected 'return' (T_RETURN) in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 27
+Request URL: /tests/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/josh/Fina...')
+#1 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\Controller\\...')
+#2 [internal function]: spl_autoload_call('App\\Controller\\...')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Core/App.php(152): class_exists('App\\Controller\\...')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Core/App.php(64): Cake\Core\App::_classExistsInBase('\\Controller\\Tes...', 'App')
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(68): Cake\Core\App::className('Tests', 'Controller', 'Controller')
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#17 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#18 {main}
+
+
+2017-07-31 04:51:18 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:25 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:25 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/QuestionsController.php on line 21
+Request URL: /questions/edit/2
+Referer URL: http://localhost:8765/tests/view/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\QuestionsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Questions')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:51:27 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:37 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:43 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:43 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:47 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:53 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:53 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/edit/2
+Referer URL: http://localhost:8765/courses/view/3
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:51:58 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:51:58 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/edit/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:52:26 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:26 Error: [Error] Class 'App\Controller\UnauthorizedException' not found in /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php on line 19
+Request URL: /tests/add/2
+Client IP: 127.0.0.1
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#1 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#3 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#14 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#15 {main}
+
+
+2017-07-31 04:52:34 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:38 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:39 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:41 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:50 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:53 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:56 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:57 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:52:59 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:53:02 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:53:02 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:53:02 Error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "tests" with primary key [NULL]
+Request URL: /tests
+Referer URL: http://localhost:8765/tests/edit/2
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(25): Cake\ORM\Table->get(Array)
+#1 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(18): App\Controller\TestsController->isAuthorized(Array)
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#3 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#17 {main}
+
+
+2017-07-31 04:53:06 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:53:15 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:53:19 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:53:19 Error: [Cake\Datasource\Exception\InvalidPrimaryKeyException] Record not found in table "tests" with primary key [NULL]
+Request URL: /tests/
+Stack Trace:
+#0 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(25): Cake\ORM\Table->get(Array)
+#1 /home/josh/Final-Year-Project/mastery/src/Controller/TestsController.php(18): App\Controller\TestsController->isAuthorized(Array)
+#2 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Controller/Controller.php(262): App\Controller\TestsController->initialize()
+#3 [internal function]: Cake\Controller\Controller->__construct(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#4 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ControllerFactory.php(77): ReflectionClass->newInstance(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), 'Tests')
+#5 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/ActionDispatcher.php(90): Cake\Http\ControllerFactory->create(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#6 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/BaseApplication.php(78): Cake\Http\ActionDispatcher->dispatch(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#7 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Http\BaseApplication->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#8 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/RoutingMiddleware.php(59): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#9 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\RoutingMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#10 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Routing/Middleware/AssetMiddleware.php(88): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#11 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Routing\Middleware\AssetMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#12 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Error/Middleware/ErrorHandlerMiddleware.php(92): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#13 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(65): Cake\Error\Middleware\ErrorHandlerMiddleware->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response), Object(Cake\Http\Runner))
+#14 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Runner.php(51): Cake\Http\Runner->__invoke(Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#15 /home/josh/Final-Year-Project/mastery/vendor/cakephp/cakephp/src/Http/Server.php(80): Cake\Http\Runner->run(Object(Cake\Http\MiddlewareQueue), Object(Cake\Http\ServerRequest), Object(Cake\Http\Response))
+#16 /home/josh/Final-Year-Project/mastery/webroot/index.php(37): Cake\Http\Server->run()
+#17 {main}
+
+
+2017-07-31 04:53:36 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.
+2017-07-31 04:54:53 Warning: DebugKit not enabled. You need to either install pdo_sqlite, or define the "debug_kit" connection name.

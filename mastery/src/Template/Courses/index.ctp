@@ -16,7 +16,6 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('Course Name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('published') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>

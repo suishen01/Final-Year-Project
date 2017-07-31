@@ -12,11 +12,7 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $prerequisite->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Prerequisites'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Tests'), ['controller' => 'Tests', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
+    </ul
 <div class="prerequisites form large-9 medium-8 columns content">
     <?= $this->Form->create($prerequisite) ?>
     <fieldset>

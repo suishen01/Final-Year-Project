@@ -4,14 +4,6 @@
   * @var \App\Model\Entity\Prerequisite[]|\Cake\Collection\CollectionInterface $prerequisites
   */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Prerequisite'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Tests'), ['controller' => 'Tests', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Test'), ['controller' => 'Tests', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="prerequisites index large-9 medium-8 columns content">
     <h3><?= __('Prerequisites') ?></h3>
     <table cellpadding="0" cellspacing="0">

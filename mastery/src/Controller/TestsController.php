@@ -22,7 +22,9 @@ class TestsController extends AppController
 
     public function isAuthorized($user)
     {
-        if (($this->Auth->user()['role'] === 'Teacher') || in_array($this->request->getParam('action'), ['view'])) {
+
+        if (($this->Auth->user()['role'] === 'Teacher') ||
+          (in_array($this->request->getParam('action'), ['view']) && $this->Tests->get($this->request->getParam('pass'))['published'] === 0)) {
             return true;
         }
 
@@ -156,8 +158,6 @@ class TestsController extends AppController
     public function add($id = null)
     {
         $this->loadModel('Prerequisites');
-        $this->loadModel('Courses');
-        $course = $this->Courses->get($id);
         $test = $this->Tests->newEntity();
         if ($this->request->is('post')) {
             $test = $this->Tests->patchEntity($test, $this->request->getData());
@@ -168,7 +168,7 @@ class TestsController extends AppController
             }
             $this->Flash->error(__('The test could not be saved. Please, try again.'));
         }
-        
+
         $tests = $this->Tests->find('list', ['conditions' => ['Tests.course_id =' => $id],'limit' => 200]);
 
         $this->set(compact('test', 'tests'));

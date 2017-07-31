@@ -52,16 +52,9 @@ class AppController extends Controller
                 'action' => 'login'
             ]
         ]);
-
-        /*
-         * Enable the following components for recommended CakePHP security settings.
-         * see http://book.cakephp.org/3.0/en/controllers/components/security.html
-         */
-        //$this->loadComponent('Security');
-        //$this->loadComponent('Csrf');
     }
 
-     
+
     public function isAuthorized($user)
     {
         // Admin can access every action
