@@ -25,7 +25,6 @@
                 <td>
                     <?= $this->Html->link($course->name, ['action' => 'view', $course->id]) ?>
                 </td>
-                <td><?= $course->published ? __('Yes') : __('No'); ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $course->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $course->id], ['confirm' => __('Are you sure you want to delete # {0}?', $course->id)]) ?>

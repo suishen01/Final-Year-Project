@@ -141,10 +141,13 @@ class QuestionsController extends AppController
         $question = $this->Questions->get($id, [
             'contain' => ['Tests']
         ]);
-
+        $questions = $this->Questions->find('all', [
+            'conditions' => ['Questions.test_id =' => $question->test_id]
+        ]);
         $this->passedPrerequisites($question->test_id);
 
         $this->set('question', $question);
+        $this->set('questions', $questions->toArray());
         $this->set('_serialize', ['question']);
 
 

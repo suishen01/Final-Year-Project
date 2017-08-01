@@ -7,6 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Back to Course Page'), ['controller' => 'Courses', 'action' => 'view', $test->course_id]) ?></li>
         <li><?= $this->Html->link(__('Edit Test'), ['action' => 'edit', $test->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Test'), ['action' => 'delete', $test->id], ['confirm' => __('Are you sure you want to delete # {0}?', $test->id)]) ?> </li>
         <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add', $test->id]) ?> </li>

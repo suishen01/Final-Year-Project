@@ -22,9 +22,8 @@ class TestsController extends AppController
 
     public function isAuthorized($user)
     {
-
         if (($this->Auth->user()['role'] === 'Teacher') ||
-          (in_array($this->request->getParam('action'), ['view']) && $this->Tests->get($this->request->getParam('pass'))['published'] === 0)) {
+          (in_array($this->request->getParam('action'), ['view']) && $this->Tests->get($this->request->getParam('pass'))['published'] === true)) {
             return true;
         }
 
