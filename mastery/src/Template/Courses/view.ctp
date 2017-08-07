@@ -14,9 +14,11 @@
 <body>
 <div id="network"></div>
 <script>
-
-    var nodes = [{id:1,label:"Test 1"},{id:2,label:"Test 2"},{id:3,label:"Test 3"},{id:4,label:"Test 4"},{id:5,label:"Test 5"},{id:0,label:"Test 6"}];
-    var edges = [{from:0,to:1,id:"e0"},{from:1,to:3,id:"e1"},{from:2,to:3,id:"e2"},{from:0,to:2,id:"e4"},{from:4,to:5,id:"e5"}];
+    var nodes = [];
+    <?php for($i = 0; $i < sizeOf($tests); $i++):?>
+        nodes[<?= $i ?>] = {id:<?= h($tests[$i]['id']); ?>, label:"<?= h($tests[$i]['label']); ?>"};
+    <?php endfor; ?>
+    var edges = [{from:1,to:3,id:"e0"}];
     var data = {
         nodes: nodes,
         edges: edges
@@ -45,7 +47,12 @@
             to: true
           }
         },
-        interaction: {dragNodes :false, dragView :false},
+        interaction: {
+          dragNodes: false,
+          dragView: false,
+          zoomView: false
+        },
+
         physics: {
             enabled: false
         }
@@ -53,9 +60,8 @@
     var network = new vis.Network(container, data, options);
 
     network.on("selectNode", function (params) {
-      alert(<?=$course?>.tests[0].id);
         if (params.nodes.length === 1) {
-            //window.location = "http://localhost:8765/tests/view/" + params.nodes[0];
+            window.location = "http://localhost:8765/tests/view/" + params.nodes[0];
         }
     });
 </script>

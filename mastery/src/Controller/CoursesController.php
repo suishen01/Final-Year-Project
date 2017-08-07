@@ -68,7 +68,12 @@ class CoursesController extends AppController
         $course = $this->Courses->get($id, [
             'contain' => ['Enrollment', 'Tests']
         ]);
-        $this->set('tests', $course->tests);
+        $tests = [];
+        foreach ($course->tests as $test){
+          $array = ['id'=>$test->id, 'label'=>$test->name];
+          array_push($tests, $array);
+        }
+        $this->set('tests', $tests);
         $this->set('course', $course);
         $this->set('_serialize', ['course']);
     }
