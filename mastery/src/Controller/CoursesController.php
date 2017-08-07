@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\Routing\Router;
 
 /**
  * Courses Controller
@@ -67,7 +68,7 @@ class CoursesController extends AppController
         $course = $this->Courses->get($id, [
             'contain' => ['Enrollment', 'Tests']
         ]);
-
+        $this->set('tests', $course->tests);
         $this->set('course', $course);
         $this->set('_serialize', ['course']);
     }
