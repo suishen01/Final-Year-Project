@@ -73,6 +73,28 @@ class CoursesController extends AppController
           $array = ['id'=>$test->id, 'label'=>$test->name];
           array_push($tests, $array);
         }
+        $this->loadModel('Prerequisites');
+
+        $prereqs = [];
+        $query = $this->Prerequisites->find();
+        $query
+            ->select(['Prerequisites.pre_id', 'Prerequisites.test_id'])
+            ->where(['t.course_id =' => $id])
+            ->hydrate(false)
+            ->join([
+                'table' => 'tests',
+                'alias' => 't',
+                'type' => 'LEFT',
+                'conditions' => [
+                    't.id = Prerequisites.pre_id'
+                ]
+            ]);
+        foreach($query as $prereq) {
+          $array2 = ['from'=>$prereq["pre_id"],'to'=>$prereq["test_id"],'id'=>"e".$prereq["pre_id"]."-".$prereq["test_id"]];
+          array_push($prereqs, $array2);
+        }
+        
+        $this->set('prereqs', $prereqs);
         $this->set('tests', $tests);
         $this->set('course', $course);
         $this->set('_serialize', ['course']);

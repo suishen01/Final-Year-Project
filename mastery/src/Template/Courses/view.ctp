@@ -18,7 +18,12 @@
     <?php for($i = 0; $i < sizeOf($tests); $i++):?>
         nodes[<?= $i ?>] = {id:<?= h($tests[$i]['id']); ?>, label:"<?= h($tests[$i]['label']); ?>"};
     <?php endfor; ?>
-    var edges = [{from:1,to:3,id:"e0"}];
+
+    var edges = [];
+    <?php for($i = 0; $i < sizeOf($prereqs); $i++):?>
+        edges[<?= $i ?>] = {from:<?= h($prereqs[$i]['from']); ?>, to:<?= h($prereqs[$i]['to']); ?>, id:"<?= h($prereqs[$i]['id']); ?>"};
+    <?php endfor; ?>
+
     var data = {
         nodes: nodes,
         edges: edges
@@ -37,9 +42,12 @@
         },
         nodes: {
           shape: 'circle',
+          font: {
+            size: 20
+          },
           widthConstraint: {
-            minimum: 100,
-            maximum: 100
+            minimum: 150,
+            maximum: 150
           }
         },
         edges: {
