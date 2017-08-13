@@ -70,15 +70,13 @@ class CoursesController extends AppController
         ]);
         $tests = [];
         foreach ($course->tests as $test){
-          $array = ['id'=>$test->id, 'label'=>$test->name];
+          $array = ['id'=>$test->id, 'label'=>$test->name, 'color'=>'#00a6e5'];
           array_push($tests, $array);
         }
         $this->loadModel('Prerequisites');
-
-        $prereqs = [];
-        $query = $this->Prerequisites->find();
-        $query
-            ->select(['Prerequisites.pre_id', 'Prerequisites.test_id'])
+        $query2 = $this->Prerequisites->find();
+        $query2
+            ->select(['Prerequisites.pre_id', 'Prerequisites.test_id', 'Prerequisites.required_marks', 'count' => $query2->func()->count('q.id')])
             ->where(['t.course_id =' => $id])
             ->hydrate(false)
             ->join([
@@ -88,12 +86,84 @@ class CoursesController extends AppController
                 'conditions' => [
                     't.id = Prerequisites.pre_id'
                 ]
-            ]);
-        foreach($query as $prereq) {
-          $array2 = ['from'=>$prereq["pre_id"],'to'=>$prereq["test_id"],'id'=>"e".$prereq["pre_id"]."-".$prereq["test_id"]];
+            ])
+            ->join([
+                'table' => 'questions',
+                'alias' => 'q',
+                'type' => 'LEFT',
+                'conditions' => [
+                    'q.test_id = Prerequisites.pre_id'
+                ]
+            ])
+            ->group('Prerequisites.pre_id')
+            ->group('Prerequisites.test_id')
+            ->group('Prerequisites.required_marks');
+
+        $query3 = $this->Prerequisites->find();
+        $query3
+            ->select(['Prerequisites.pre_id', 'Prerequisites.test_id', 'count' => $query2->func()->count('q.id')])
+            ->where(['t.course_id =' => $id])
+            ->where(['q.id = m.question_id'])
+            ->where(['m.user_id =' => $this->Auth->user()['id']])
+            ->hydrate(false)
+            ->join([
+                'table' => 'tests',
+                'alias' => 't',
+                'type' => 'LEFT',
+                'conditions' => [
+                    't.id = Prerequisites.pre_id'
+                ]
+            ])
+            ->join([
+                'table' => 'questions',
+                'alias' => 'q',
+                'type' => 'LEFT',
+                'conditions' => [
+                    'q.test_id = Prerequisites.pre_id'
+                ]
+            ])
+            ->join([
+                'table' => 'marks',
+                'alias' => 'm',
+                'type' => 'LEFT',
+                'conditions' => [
+                    'm.question_id = q.id'
+                ]
+            ])
+            ->group('Prerequisites.pre_id')
+            ->group('Prerequisites.test_id');
+
+        $prereqs = [];
+        $prereqs2 = [];
+        foreach($query2 as $prereq) {
+            foreach ($query3 as $prereq2) {
+                if($prereq['pre_id'] === $prereq2['pre_id'] && $prereq['test_id'] === $prereq2['test_id']) {
+                    if($prereq2['count']/$prereq['count']*100 >= $prereq['required_marks']) {
+                        $array3 = ['from'=>$prereq["pre_id"],'to'=>$prereq["test_id"],'id'=>"e".$prereq["pre_id"]."-".$prereq["test_id"]];
+                        array_push($prereqs2, $array3);
+                    }
+                }
+            }
+        }
+        foreach($query2 as $prereq) {
+          $array2 = ['from'=>$prereq["pre_id"],'to'=>$prereq["test_id"],'id'=>"e".$prereq["pre_id"]."-".$prereq["test_id"],'dashes'=>"true", 'color'=>'#000000'];
           array_push($prereqs, $array2);
         }
-        
+        foreach ($prereqs as $key=>$value) {
+          foreach ($prereqs2 as $p2) {
+            if($value['id'] === $p2['id'] ) {
+              $prereqs[$key]['dashes'] = 'false';
+            }
+          }
+        }
+        foreach ($tests as $key=>$value){
+          foreach ($prereqs as $p) {
+            if($value['id'] === $p['to'] && $p['dashes'] === 'true') {
+              $tests[$key]['color'] = '#808080';
+            }
+          }
+        }
+
         $this->set('prereqs', $prereqs);
         $this->set('tests', $tests);
         $this->set('course', $course);

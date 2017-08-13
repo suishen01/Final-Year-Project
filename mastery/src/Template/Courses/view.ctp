@@ -16,12 +16,12 @@
 <script>
     var nodes = [];
     <?php for($i = 0; $i < sizeOf($tests); $i++):?>
-        nodes[<?= $i ?>] = {id:<?= h($tests[$i]['id']); ?>, label:"<?= h($tests[$i]['label']); ?>"};
+        nodes[<?= $i ?>] = {id:<?= h($tests[$i]['id']); ?>, label:"<?= h($tests[$i]['label']); ?>", color:"<?= h($tests[$i]['color']); ?>"};
     <?php endfor; ?>
 
     var edges = [];
     <?php for($i = 0; $i < sizeOf($prereqs); $i++):?>
-        edges[<?= $i ?>] = {from:<?= h($prereqs[$i]['from']); ?>, to:<?= h($prereqs[$i]['to']); ?>, id:"<?= h($prereqs[$i]['id']); ?>"};
+        edges[<?= $i ?>] = {from:<?= h($prereqs[$i]['from']); ?>, to:<?= h($prereqs[$i]['to']); ?>, id:"<?= h($prereqs[$i]['id']); ?>", dashes:<?= h($prereqs[$i]['dashes']); ?>, color:"<?= h($prereqs[$i]['color']); ?>"};
     <?php endfor; ?>
 
     var data = {
@@ -42,6 +42,7 @@
         },
         nodes: {
           shape: 'circle',
+          chosen: false,
           font: {
             size: 20
           },
@@ -51,9 +52,11 @@
           }
         },
         edges: {
+          chosen: false,
           arrows: {
             to: true
-          }
+          },
+          dashes: true
         },
         interaction: {
           dragNodes: false,
@@ -68,9 +71,11 @@
     var network = new vis.Network(container, data, options);
 
     network.on("selectNode", function (params) {
-        if (params.nodes.length === 1) {
-            window.location = "http://localhost:8765/tests/view/" + params.nodes[0];
+      for (var i = 0; i < nodes.length; i++) {
+        if (nodes[i]['id'] === params.nodes[0] && nodes[i]['color'] !== '#808080') {
+          window.location = "http://localhost:8765/tests/view/" + params.nodes[0];
         }
+      }
     });
 </script>
 </body>
