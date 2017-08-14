@@ -1,12 +1,24 @@
 
+
 <?php
 /**
   * @var \App\View\AppView $this
   */
+
+echo $this->Html->css('codemirror');
+echo $this->Html->css('show-hint');
+echo $this->Html->css('eclipse');
+echo $this->Html->script('codemirror', array('inline' => 'false'));
+echo $this->Html->script('anyword-hint', array('inline' => 'false'));
+echo $this->Html->script('clike', array('inline' => 'false'));
+echo $this->Html->script('show-hint', array('inline' => 'false'));
+echo $this->Html->script('matchbrackets', array('inline' => 'false'));
+
 ?>
+
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li><?= $this->Html->link(__('Back to Test Page'), ['controller' => 'Tests', 'action' => 'view', $question->test_id]) ?></li>
+        <li><?= $this->Html->link(__('Go Back'), ['controller' => 'Tests', 'action' => 'view', $question->test_id]) ?></li>
         <table cellpadding="0" cellspacing="0">
             <thead>
                 <tr>
@@ -37,4 +49,28 @@
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
+    <button id="detail" onClick="clicked()">SHOW DETAILS</button>
 </div>
+
+
+<script type="text/javascript">
+  var editor = CodeMirror.fromTextArea(answer, {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "text/x-java",
+	theme: "eclipse",
+	extraKeys:{"Ctrl":"autocomplete"}
+  });
+var result = document.getElementById("result").value;
+//$('#result').html(output);
+alert(result);
+
+function clicked(){
+	var output = document.getElementById("output").value;
+	if (output == "" || output == undefined || output == null) {
+	} else {
+	alert(output);
+	}
+}
+</script>
+
