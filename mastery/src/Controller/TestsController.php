@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Tests Controller
@@ -12,9 +13,9 @@ use App\Controller\AppController;
  */
 class TestsController extends AppController
 {
-    public function initialize()
+    public function afterFilter(Event $event)
     {
-        parent::initialize();
+        parent::afterFilter($event);
         if (!$this->isAuthorized($this->Auth->user())) {
             throw new UnauthorizedException();
         }

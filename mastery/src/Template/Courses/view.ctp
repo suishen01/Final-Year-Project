@@ -15,13 +15,13 @@
 <div id="network"></div>
 <script>
     var nodes = [];
-    <?php for($i = 0; $i < sizeOf($tests); $i++):?>
-        nodes[<?= $i ?>] = {id:<?= h($tests[$i]['id']); ?>, label:"<?= h($tests[$i]['label']); ?>", color:"<?= h($tests[$i]['color']); ?>"};
+    <?php for($i = 0; $i < sizeOf($nodes); $i++):?>
+        nodes[<?= $i ?>] = {id:<?= h($nodes[$i]['id']); ?>, label:"<?= h($nodes[$i]['label']); ?>", color:"<?= h($nodes[$i]['color']); ?>"};
     <?php endfor; ?>
 
     var edges = [];
-    <?php for($i = 0; $i < sizeOf($prereqs); $i++):?>
-        edges[<?= $i ?>] = {from:<?= h($prereqs[$i]['from']); ?>, to:<?= h($prereqs[$i]['to']); ?>, id:"<?= h($prereqs[$i]['id']); ?>", dashes:<?= h($prereqs[$i]['dashes']); ?>, color:"<?= h($prereqs[$i]['color']); ?>"};
+    <?php for($i = 0; $i < sizeOf($edges); $i++):?>
+        edges[<?= $i ?>] = {from:<?= h($edges[$i]['from']); ?>, to:<?= h($edges[$i]['to']); ?>, id:"<?= h($edges[$i]['id']); ?>", label:"<?= h($edges[$i]['label']); ?>", dashes:<?= h($edges[$i]['dashes']); ?>, color:"<?= h($edges[$i]['color']); ?>",};
     <?php endfor; ?>
 
     var data = {
@@ -35,9 +35,9 @@
             hierarchical: {
                 direction: "UD",
                 sortMethod: "directed",
-                nodeSpacing: 300,
-                levelSeparation: 250,
-                treeSpacing: 300
+                nodeSpacing: 250,
+                levelSeparation: 270,
+                treeSpacing: 250
             }
         },
         nodes: {
@@ -55,6 +55,9 @@
           chosen: false,
           arrows: {
             to: true
+          },
+          font: {
+            size: 20
           },
           dashes: true
         },

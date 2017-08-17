@@ -47,7 +47,7 @@ $cakeDescription = 'Mastery Learning';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="http://localhost:8765/users/logout">Logout</a></li>
+                <li><a href="http://localhost:8765/users/logout">Logout</a></li>
             </ul>
         </div>
     </nav>

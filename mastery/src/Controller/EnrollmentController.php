@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Enrollment Controller
@@ -12,14 +13,14 @@ use App\Controller\AppController;
  */
 class EnrollmentController extends AppController
 {
-    public function initialize()
+    public function afterFilter(Event $event)
     {
-        parent::initialize();
+        parent::afterFilter($event);
         if (!$this->isAuthorized($this->Auth->user())) {
             throw new UnauthorizedException();
         }
     }
-    
+
     /**
      * Index method
      *

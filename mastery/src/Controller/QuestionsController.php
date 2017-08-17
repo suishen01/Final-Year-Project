@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Http\Client;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Questions Controller
@@ -14,9 +15,9 @@ use Cake\ORM\TableRegistry;
  */
 class QuestionsController extends AppController
 {
-    public function initialize()
+    public function afterFilter(Event $event)
     {
-        parent::initialize();
+        parent::afterFilter($event);
         if (!$this->isAuthorized($this->Auth->user())) {
             throw new UnauthorizedException();
         }
@@ -167,9 +168,7 @@ class QuestionsController extends AppController
             } else {
               $this->Flash->error('Tests failed');
             }
-          } else {
-            $this->Flash->error('Error: '.$output);
-          }
+          } 
         }
     }
 

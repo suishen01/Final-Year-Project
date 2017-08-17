@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
-
 /**
  * Users Controller
  *
@@ -14,9 +13,9 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
-    public function initialize()
+    public function afterFilter(Event $event)
     {
-        parent::initialize();
+        parent::afterFilter($event);
         if (!$this->isAuthorized($this->Auth->user())) {
             throw new UnauthorizedException();
         }
