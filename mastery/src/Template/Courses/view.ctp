@@ -7,7 +7,7 @@
     <style type="text/css">
         #network{
             width: 100%;
-            height: 1000px;
+            height: 95vh;
         }
     </style>
 </head>
@@ -41,14 +41,19 @@
             }
         },
         nodes: {
+          borderWidth: 3,
           shape: 'circle',
           chosen: false,
           font: {
-            size: 20
+            size: 20,
+            color: "#ffffff"
           },
           widthConstraint: {
             minimum: 150,
             maximum: 150
+          },
+          shadow: {
+            enabled: true
           }
         },
         edges: {
@@ -57,7 +62,8 @@
             to: true
           },
           font: {
-            size: 20
+            size: 20,
+            background: "#ffffff"
           },
           dashes: true
         },

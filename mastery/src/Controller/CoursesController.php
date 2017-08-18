@@ -75,7 +75,7 @@ class CoursesController extends AppController
         if ($this->Auth->user()['role'] == 'Student') {
           $nodes = [];
           foreach ($course->tests as $test){
-            $array = ['id'=>$test->id, 'label'=>$test->name, 'color'=>'#00a6e5'];
+            $array = ['id'=>$test->id, 'label'=>$test->name, 'color'=>'#116d76'];
             array_push($nodes, $array);
           }
           $this->loadModel('Prerequisites');
