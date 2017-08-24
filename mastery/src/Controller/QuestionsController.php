@@ -162,14 +162,16 @@ class QuestionsController extends AppController
           $output = $this->FormSuccessfulResults($result);
 
           if ($result['result'] === 'SUCCESS') {
-            if (strcmp($output, $question->answer) === 0) {
-              $this->Flash->success("Pass");
-            } else {
-              $this->Flash->error('Tests failed');
-            }
+              if (strcmp($output, $question->answer) === 0) {
+  	            $result = 'Congrats! You passed this question!';
+              } else {
+  	            $result = 'Wrong answer, please try again!';
+              }
           } else {
-            $this->Flash->error('Error: '.$output);
+	          $result = 'Wrong answer, please try again!';
           }
+      	  echo "<tr><td> <input type=\"hidden\" id=\"result\" value=\"$result\"></td></tr>";
+      	  echo "<tr><td> <input type=\"hidden\" id=\"output\" value=\"$output\"></td></tr>";
         }
     }
 
