@@ -164,12 +164,19 @@ class QuestionsController extends AppController
 
           if ($result['result'] === 'SUCCESS') {
             if (strcmp($output, $question->answer) === 0) {
-	            $result = 'Congrat! You passed this question!';
+	            $result = 'Congrats! You passed this question.';
+
+              $marksTable = TableRegistry::get('Marks');
+              $mark = $marksTable->newEntity();
+              $mark->question_id = $id;
+              $mark->user_id = $this->Auth->user()['id'];
+              $marksTable->save($mark);
+
             } else {
-	            $result = 'Wrong answer, please try again!';
+	            $result = 'Wrong answer, please try again.';
             }
           } else {
-	          $result = 'Wrong answer, please try again!';
+	          $result = 'The code contains an error.';
           }
       	  echo "<tr><td> <input type=\"hidden\" id=\"result\" value=\"$result\"></td></tr>";
       	  echo "<tr><td> <input type=\"hidden\" id=\"output\" value=\"$output\"></td></tr>";
