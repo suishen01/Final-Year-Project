@@ -177,6 +177,8 @@ class QuestionsController extends AppController
         // Set the language and filename to be used for compilation
         $language = "java";
         $filename = "main.java";
+        $output ='';
+        $this->set('output', $output);
 
         if ($this->request->is('post')) {
 
@@ -200,6 +202,7 @@ class QuestionsController extends AppController
           } else {
 	          $result = 'The code contains an error.';
           }
+          $this->set('output', $output);
       	  echo "<tr><td> <input type=\"hidden\" id=\"result\" value=\"$result\"></td></tr>";
       	  echo "<tr><td> <input type=\"hidden\" id=\"output\" value=\"$output\"></td></tr>";
         }

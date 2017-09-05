@@ -57,7 +57,7 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
     </fieldset>
     <?= $this->Form->button(__('Submit'), array('class' => 'myButton')) ?>
     <?= $this->Form->end() ?>
-    <button class="myButton" id="detail" onClick="clicked()">DETAILS</button>
+    <textarea readonly id="outputArea" style="margin-top:5%;height:20%;width:95%;margin-left:3%"><?= h($output) ?></textarea>
 </div>
 
 <script type="text/javascript">
@@ -71,12 +71,4 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
 var result = document.getElementById("result").value;
 //$('#result').html(output);
 alert(result);
-
-function clicked(){
-	var output = document.getElementById("output").value;
-	if (output == "" || output == undefined || output == null) {
-	} else {
-	alert(output);
-	}
-}
 </script>
