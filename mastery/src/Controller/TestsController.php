@@ -24,7 +24,7 @@ class TestsController extends AppController
     public function isAuthorized($user)
     {
         if (($this->Auth->user()['role'] === 'Teacher') ||
-          (in_array($this->request->getParam('action'), ['view']) && $this->Tests->get($this->request->getParam('pass'))['published'] === true)) {
+      (in_array($this->request->getParam('action'), ['view']) /*&& $this->Tests->get($this->request->getParam('pass'))['published'] === true*/)) {
             return true;
         }
 
@@ -145,7 +145,27 @@ class TestsController extends AppController
             'contain' => ['Courses', 'Prerequisites', 'Questions']
         ]);
         $this->passedPrerequisites($id, $test);
-
+        if ($this->Auth->user()['role'] == 'Student') {
+          $this->loadModel('Marks');
+          $query = $this->Marks->find();
+          $query
+              ->select(['Marks.question_id'])
+              ->where(['q.test_id =' => $id])
+              ->hydrate(false)
+              ->join([
+                  'table' => 'questions',
+                  'alias' => 'q',
+                  'type' => 'LEFT',
+                  'conditions' => [
+                      'q.id = Marks.question_id'
+                  ]
+              ]);
+          $completed = [];
+          foreach($query as $q) {
+            array_push($completed, $q['question_id']);
+          }
+          $this->set('completed', $completed);
+        }
         $this->set('test', $test);
         $this->set('_serialize', ['test']);
     }

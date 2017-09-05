@@ -147,6 +147,28 @@ class QuestionsController extends AppController
         ]);
         $this->passedPrerequisites($question->test_id);
 
+        if ($this->Auth->user()['role'] == 'Student') {
+          $this->loadModel('Marks');
+          $query = $this->Marks->find();
+          $query
+              ->select(['Marks.question_id'])
+              ->where(['q.test_id =' => $question->test_id])
+              ->hydrate(false)
+              ->join([
+                  'table' => 'questions',
+                  'alias' => 'q',
+                  'type' => 'LEFT',
+                  'conditions' => [
+                      'q.id = Marks.question_id'
+                  ]
+              ]);
+          $completed = [];
+          foreach($query as $q) {
+            array_push($completed, $q['question_id']);
+          }
+          $this->set('completed', $completed);
+        }
+
         $this->set('question', $question);
         $this->set('questions', $questions->toArray());
         $this->set('_serialize', ['question']);

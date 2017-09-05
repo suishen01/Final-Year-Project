@@ -68,6 +68,7 @@
           dashes: true
         },
         interaction: {
+          hover: true,
           dragNodes: false,
           dragView: false,
           zoomView: false

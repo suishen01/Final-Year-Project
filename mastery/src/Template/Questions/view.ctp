@@ -30,9 +30,16 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
               <?php $index = 1; ?>
               <?php foreach ($questions as $q){ ?>
                 <tr>
-                    <td>
-                        <?= $this->Html->link($index, ['action' => 'view', $q->id]) ?>
-                    </td>
+                  <?php $status = False;
+                  foreach($completed as $c) {
+                    if($c == $q->id):
+                      $status = True; ?>
+                      <td><?= h($index) ?> - Completed</td>
+                    <?php endif;
+                  }
+                  if($status == False): ?>
+                    <td> <?= $this->Html->link($index, ['action' => 'view', $q->id]) ?> </td>
+                  <?php endif; ?>
                 </tr>
               <?php $index++; ?>
               <?php } ?>
