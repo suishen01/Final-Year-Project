@@ -145,6 +145,7 @@ class TestsController extends AppController
             'contain' => ['Courses', 'Prerequisites', 'Questions']
         ]);
         $this->passedPrerequisites($id, $test);
+        $completed = [];
         if ($this->Auth->user()['role'] == 'Student') {
           $this->loadModel('Marks');
           $query = $this->Marks->find();
@@ -160,12 +161,13 @@ class TestsController extends AppController
                       'q.id = Marks.question_id'
                   ]
               ]);
-          $completed = [];
+
           foreach($query as $q) {
             array_push($completed, $q['question_id']);
           }
-          $this->set('completed', $completed);
+
         }
+        $this->set('completed', $completed);
         $this->set('test', $test);
         $this->set('_serialize', ['test']);
     }
