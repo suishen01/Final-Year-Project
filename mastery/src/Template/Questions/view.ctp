@@ -17,6 +17,36 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
 
 ?>
 
+<nav class="large-2 medium-3 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li><?= $this->Html->link(__('Go Back'), ['controller' => 'Tests', 'action' => 'view', $question->test_id]) ?></li>
+        <table cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th scope="col"><?= $this->Paginator->sort('Questions') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+              <?php $index = 1; ?>
+              <?php foreach ($questions as $q){ ?>
+                <tr>
+                  <?php $status = False;
+                  foreach($completed as $c) {
+                    if($c == $q->id):
+                      $status = True; ?>
+                      <td><?= h($index) ?> - Completed</td>
+                    <?php endif;
+                  }
+                  if($status == False): ?>
+                    <td> <?= $this->Html->link($index, ['action' => 'view', $q->id]) ?> </td>
+                  <?php endif; ?>
+                </tr>
+              <?php $index++; ?>
+              <?php } ?>
+            </tbody>
+        </table>
+    </ul>
+</nav>
 <div class="courses form large-10 large-10 columns content">
     <?= $this->Form->create() ?>
     <fieldset>
@@ -27,7 +57,7 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
     </fieldset>
     <?= $this->Form->button(__('Submit'), array('class' => 'myButton')) ?>
     <?= $this->Form->end() ?>
-    <button class="myButton" id="detail" onClick="clicked()">DETAILS</button>
+    <textarea readonly id="outputArea" style="margin-top:5%;height:20%;width:95%;margin-left:3%"><?= h($output) ?></textarea>
 </div>
 
 <script type="text/javascript">
@@ -41,13 +71,4 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
 var result = document.getElementById("result").value;
 //$('#result').html(output);
 alert(result);
-
-function clicked(){
-	var output = document.getElementById("output").value;
-	if (output == "" || output == undefined || output == null) {
-	} else {
-	alert(output);
-	}
-}
 </script>
-

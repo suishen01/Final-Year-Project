@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Marks Controller
@@ -12,7 +13,13 @@ use App\Controller\AppController;
  */
 class MarksController extends AppController
 {
-
+    /*public function afterFilter(Event $event)
+    {
+        parent::afterFilter($event);
+        if (!$this->isAuthorized($this->Auth->user())) {
+            throw new UnauthorizedException();
+        }
+    }*/
     /**
      * Index method
      *

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Prerequisites Controller
@@ -12,9 +13,9 @@ use App\Controller\AppController;
  */
 class PrerequisitesController extends AppController
 {
-    public function initialize()
+    public function afterFilter(Event $event)
     {
-        parent::initialize();
+        parent::afterFilter($event);
         if (!$this->isAuthorized($this->Auth->user())) {
             throw new UnauthorizedException();
         }
@@ -28,7 +29,7 @@ class PrerequisitesController extends AppController
 
         return parent::isAuthorized($user);
     }
-    
+
     /**
      * Index method
      *

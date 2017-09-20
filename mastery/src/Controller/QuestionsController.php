@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Http\Client;
 use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 /**
  * Questions Controller
@@ -14,9 +15,9 @@ use Cake\ORM\TableRegistry;
  */
 class QuestionsController extends AppController
 {
-    public function initialize()
+    public function afterFilter(Event $event)
     {
-        parent::initialize();
+        parent::afterFilter($event);
         if (!$this->isAuthorized($this->Auth->user())) {
             throw new UnauthorizedException();
         }
@@ -145,7 +146,28 @@ class QuestionsController extends AppController
             'conditions' => ['Questions.test_id =' => $question->test_id]
         ]);
         $this->passedPrerequisites($question->test_id);
-
+        $completed = [];
+        
+        if ($this->Auth->user()['role'] == 'Student') {
+          $this->loadModel('Marks');
+          $query = $this->Marks->find();
+          $query
+              ->select(['Marks.question_id'])
+              ->where(['q.test_id =' => $question->test_id])
+              ->hydrate(false)
+              ->join([
+                  'table' => 'questions',
+                  'alias' => 'q',
+                  'type' => 'LEFT',
+                  'conditions' => [
+                      'q.id = Marks.question_id'
+                  ]
+              ]);
+          foreach($query as $q) {
+            array_push($completed, $q['question_id']);
+          }
+        }
+        $this->set('completed', $completed);
         $this->set('question', $question);
         $this->set('questions', $questions->toArray());
         $this->set('_serialize', ['question']);
@@ -154,6 +176,8 @@ class QuestionsController extends AppController
         // Set the language and filename to be used for compilation
         $language = "java";
         $filename = "main.java";
+        $output ='';
+        $this->set('output', $output);
 
         if ($this->request->is('post')) {
 
@@ -163,13 +187,23 @@ class QuestionsController extends AppController
 
           if ($result['result'] === 'SUCCESS') {
             if (strcmp($output, $question->answer) === 0) {
-              $this->Flash->success("Pass");
+	            $result = 'Congrats! You passed this question.';
+
+              $marksTable = TableRegistry::get('Marks');
+              $mark = $marksTable->newEntity();
+              $mark->question_id = $id;
+              $mark->user_id = $this->Auth->user()['id'];
+              $marksTable->save($mark);
+
             } else {
-              $this->Flash->error('Tests failed');
+	            $result = 'Wrong answer, please try again.';
             }
           } else {
-            $this->Flash->error('Error: '.$output);
+	          $result = 'The code contains an error.';
           }
+          $this->set('output', $output);
+      	  echo "<tr><td> <input type=\"hidden\" id=\"result\" value=\"$result\"></td></tr>";
+      	  echo "<tr><td> <input type=\"hidden\" id=\"output\" value=\"$output\"></td></tr>";
         }
     }
 
