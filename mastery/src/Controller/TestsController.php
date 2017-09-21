@@ -144,9 +144,12 @@ class TestsController extends AppController
         $test = $this->Tests->get($id, [
             'contain' => ['Courses', 'Prerequisites', 'Questions']
         ]);
+        $this->set('test', $test);
+        $this->set('_serialize', ['test']);
+
         $this->passedPrerequisites($id, $test);
-        $completed = [];
         if ($this->Auth->user()['role'] == 'Student') {
+          $completed = [];
           $this->loadModel('Marks');
           $query = $this->Marks->find();
           $query
@@ -165,11 +168,11 @@ class TestsController extends AppController
           foreach($query as $q) {
             array_push($completed, $q['question_id']);
           }
-
+          $this->set('role', $this->Auth->user()['role']);
+          $this->set('completed', $completed);
+        } else {
+          $this->render('/Tests/adminview');
         }
-        $this->set('completed', $completed);
-        $this->set('test', $test);
-        $this->set('_serialize', ['test']);
     }
 
     /**
@@ -186,7 +189,8 @@ class TestsController extends AppController
             $test->course_id = $id;
             if ($this->Tests->save($test)) {
                 $this->Flash->success(__('The test has been saved.'));
-                return $this->redirect(['action' => 'index']);
+
+                return $this->redirect(['controller' => 'Courses', 'action' => 'view', $id]);
             }
             $this->Flash->error(__('The test could not be saved. Please, try again.'));
         }
@@ -214,7 +218,7 @@ class TestsController extends AppController
             if ($this->Tests->save($test)) {
                 $this->Flash->success(__('The test has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Courses', 'action' => 'view', $id]);
             }
             $this->Flash->error(__('The test could not be saved. Please, try again.'));
         }

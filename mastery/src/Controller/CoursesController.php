@@ -50,7 +50,8 @@ class CoursesController extends AppController
     public function index()
     {
         $courses = $this->paginate($this->Courses);
-
+        $role = $this->Auth->user()['role'];
+        $this->set('role', $role);
         $this->set(compact('courses'));
         $this->set('_serialize', ['courses']);
     }
