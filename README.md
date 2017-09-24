@@ -21,6 +21,9 @@ Follow instructions to install CakePHP. to run the server enter 'cake server' fr
 #### Database
 MySQL commands to create the database can be found in the tables file. Database should be name 'ml'.
 
+#### Start the Server
+Go in the project's root directory, run bin/cake server
+
 #### Admin
 http://localhost:8765/users/add to add an admin user.
 
