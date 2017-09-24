@@ -50,7 +50,7 @@ echo $this->Html->script('matchbrackets', array('inline' => 'false'));
 <div class="courses form large-10 large-10 columns content">
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= h($question->description) ?></legend>
+        <textarea rows="10" readonly><?= h($question->description) ?></textarea>
         <?php
             echo $this->Form->control('answer', ['type' => 'textarea']);
         ?>

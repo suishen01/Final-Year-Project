@@ -147,7 +147,7 @@ class QuestionsController extends AppController
         ]);
         $this->passedPrerequisites($question->test_id);
         $completed = [];
-        
+
         if ($this->Auth->user()['role'] == 'Student') {
           $this->loadModel('Marks');
           $query = $this->Marks->find();
@@ -184,6 +184,11 @@ class QuestionsController extends AppController
           $source = $this->request->getData()['answer'];
           $result = $this->remoteExecuteSource($source, $question->field1, $question->field2, $language, $filename);
           $output = $this->FormSuccessfulResults($result);
+          
+          if (strpos($output, 'error: cannot find symbol') !== false || strpos($output, 'error: non-static') !== false
+                || strpos($output, 'class main cannot be applied to given types') !== false || strpos($output, 'type not allowed here') !== false) {
+            $output = "Method declaration is incorrect";
+          }
 
           if ($result['result'] === 'SUCCESS') {
             if (strcmp($output, $question->answer) === 0) {
@@ -223,7 +228,7 @@ class QuestionsController extends AppController
             if ($this->Questions->save($question)) {
                 $this->Flash->success(__('The question has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Tests', 'action' => 'view', $id]);
             }
             $this->Flash->error(__('The question could not be saved. Please, try again.'));
         }
@@ -249,7 +254,7 @@ class QuestionsController extends AppController
             if ($this->Questions->save($question)) {
                 $this->Flash->success(__('The question has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Tests', 'action' => 'view', $question->test_id]);
             }
             $this->Flash->error(__('The question could not be saved. Please, try again.'));
         }

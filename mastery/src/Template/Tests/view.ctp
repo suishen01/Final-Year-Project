@@ -6,22 +6,13 @@
 
 echo $this->Html->css('button');
 
-
-/*
-*<nav class="large-3 medium-4 columns" id="actions-sidebar">
-*    <ul class="side-nav">
-*        <li class="heading"><?= __('Actions') ?></li>
-*        <li><?= $this->Html->link(__('Back to Course Page'), ['controller' => 'Courses', 'action' => 'view', $test->course_id]) ?></li>
-*        <li><?= $this->Html->link(__('Edit Test'), ['action' => 'edit', $test->id]) ?> </li>
-*        <li><?= $this->Form->postLink(__('Delete Test'), ['action' => 'delete', $test->id], ['confirm' => __('Are you sure you want to delete # {0}?', $test->id)]) ?> </li>
-*        <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add', $test->id]) ?> </li>
-*    </ul>
-*</nav>
-**/
 ?>
 <nav class="large-2 medium-3 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li><?= $this->Html->link(__('Go Back'), ['controller' => 'Courses', 'action' => 'view', $test->course_id]) ?></li>
+        <?php if ($role != 'Student') { ?>
+        <li><?= $this->Html->link(__('Add Question'), ['controller' => 'Questions', 'action' => 'add', $test->id]) ?></li>
+        <?php } ?>
     </ul>
 </nav>
 <div class="tests view large-9 medium-8 columns content">
@@ -57,5 +48,9 @@ echo $this->Html->css('button');
         </table>
         <?php endif; ?>
     </div>
+    <?php if ($test->questions != null) { ?>
     <?= $this->Html->link("Begin Test", array('controller' => 'Questions','action'=> 'view', $test->questions[0]->id), array( 'class' => 'myButton')) ?>
+    <?php } else { ?>
+    <h5>No Questions Available</h5>
+    <?php }?>
 </div>
